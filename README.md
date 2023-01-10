@@ -1,2 +1,0 @@
-# bgbciptanusa
-BGB CIPTA NUSA 
