@@ -31,15 +31,16 @@ const submit = () => {
             <AuthenticationCardLogo />
         </template>
 
+        <h3 class="font-bold text-3xl text-center mt-10 mb-6">Buat Akun Baru</h3>
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
                 <TextInput
                     id="name"
                     v-model="form.name"
                     type="text"
                     class="mt-1 block w-full"
                     required
+                    placeholder="Nama Lengkap"
                     autofocus
                     autocomplete="name"
                 />
@@ -47,11 +48,11 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
                     v-model="form.email"
                     type="email"
+                    value="Email"
                     class="mt-1 block w-full"
                     required
                 />
@@ -59,12 +60,12 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
                 <TextInput
                     id="password"
                     v-model="form.password"
                     type="password"
                     class="mt-1 block w-full"
+                    placeholder="Kata Sandi"
                     required
                     autocomplete="new-password"
                 />
@@ -72,12 +73,12 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
                 <TextInput
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
                     class="mt-1 block w-full"
+                    placeholder="Konfirmasi Kata Sandi"
                     required
                     autocomplete="new-password"
                 />
@@ -97,13 +98,13 @@ const submit = () => {
                 </InputLabel>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Already registered?
+            <div class="sm:flex text-center items-center sm:justify-between py-8 sm:mt-4 sm:py-10">
+                <Link :href="route('login')" class="ml-4 mb-5 sm:mb-0 text-sm text-violet-700 dark:text-violet-500 font-bold">
+                    Saya sudah punya Akun
                 </Link>
 
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
+                <PrimaryButton class="px-20 sm:px-14 text-lg text-center mt-5 sm:mt-0" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Bikin Akun
                 </PrimaryButton>
             </div>
         </form>
