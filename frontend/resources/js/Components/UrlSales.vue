@@ -6,20 +6,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
     <div class="sm:px-6 ml-4 mb-4">
         <div class="p-6">
             <div class="mt-8 flex justify-between">
-                <p class="font-bold text-4xl">Management User</p>
-                
-                <a
-                    :href="route('cekregist')"
-                    class="bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white font-bold py-2 px-4  my-3"
-                >
-                    Check Register
-                </a>
-                <button
-                    @click="openModal()"
-                    class="bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white font-bold py-2 px-4  my-3"
-                >
-                    Tambah User
-                </button>
+                <p class="font-bold text-4xl">Management URL</p> 
             </div>
         </div>
 
@@ -49,10 +36,11 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="px-4 py-2 w-20">No.</th>
-                        <th class="px-4 py-2">Name</th>
-                        <th class="px-4 py-2">Kota</th>
-                        <th class="px-4 py-2">Alamat</th>
-                        <th class="px-4 py-2">Foto</th>
+                        <th class="px-4 py-2">Sales</th>
+                        <th class="px-4 py-2">Url</th>
+                        <th class="px-4 py-2">Send</th>
+                        <th class="px-4 py-2">Date</th>
+                        <th class="px-4 py-2">Customer</th>
                         <th class="px-4 py-2">Action</th>
                     </tr>
                 </thead>
@@ -71,6 +59,8 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                             <Link :href="``"
                                 ></Link
                             >
+                        </td>
+                        <td class="border px-4 py-2">
                         </td>
                         <td class="border px-4 py-2">
                         </td>

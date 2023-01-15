@@ -6,20 +6,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
     <div class="sm:px-6 ml-4 mb-4">
         <div class="p-6">
             <div class="mt-8 flex justify-between">
-                <p class="font-bold text-4xl">Management User</p>
-                
-                <a
-                    :href="route('cekregist')"
-                    class="bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white font-bold py-2 px-4  my-3"
-                >
-                    Check Register
-                </a>
-                <button
-                    @click="openModal()"
-                    class="bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white font-bold py-2 px-4  my-3"
-                >
-                    Tambah User
-                </button>
+                <p class="font-bold text-4xl">Log Activity</p> 
             </div>
         </div>
 
@@ -50,9 +37,9 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                     <tr class="bg-gray-100">
                         <th class="px-4 py-2 w-20">No.</th>
                         <th class="px-4 py-2">Name</th>
-                        <th class="px-4 py-2">Kota</th>
-                        <th class="px-4 py-2">Alamat</th>
-                        <th class="px-4 py-2">Foto</th>
+                        <th class="px-4 py-2">Activity</th>
+                        <th class="px-4 py-2">Role</th>
+                        <th class="px-4 py-2">Date</th>
                         <th class="px-4 py-2">Action</th>
                     </tr>
                 </thead>
