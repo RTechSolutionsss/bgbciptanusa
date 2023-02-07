@@ -6,6 +6,7 @@ use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UrlSalesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -47,6 +48,7 @@ Route::middleware([
 });
 
 Auth::routes();
+Route::resource('customer', CustomerController::class);
 
 Route::middleware([
     'auth:sanctum',
