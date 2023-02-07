@@ -10,23 +10,25 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use HasTeams;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-
+    use HasApiTokens, 
+        HasFactory, 
+        HasProfilePhoto, 
+        HasTeams, 
+        Notifiable, 
+        TwoFactorAuthenticatable, 
+        softDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var string<int, string>
      */
+     
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'attachment_ktp', 'attachment_npwp', 'attachment_saving_book', 'role_id', 'parent_id'  
     ];
 
     /**

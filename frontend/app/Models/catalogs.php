@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class userSales extends Model
+class catalogs extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'status', 'link', 'user_id'
+        'created_by','category','updated_at'  
     ];
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

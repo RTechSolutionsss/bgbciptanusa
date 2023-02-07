@@ -20,6 +20,6 @@ class UserRole extends Model
      * @var string<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role_name'
     ];
 }
