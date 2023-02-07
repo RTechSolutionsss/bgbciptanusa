@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
 {
+    use HasApiTokens;
     use HasFactory;
+    use HasProfilePhoto;
+    use HasTeams;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string<int, string>
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 }

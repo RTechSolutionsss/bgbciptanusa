@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class log_activity extends Model
+class trackingUrlTasks extends Model
 {
     use HasFactory;
 }
