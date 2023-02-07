@@ -4,6 +4,11 @@
     User | BGB SYSTEM
 @endsection
 
+@push('addon-style')
+
+<link href="{{asset('assets/libs/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css"/>
+@endpush
+
 @section('content')
     <div class="section-content section-dashboard-home" data-aos="fade-up">
       <div class="container-fluid">
@@ -19,10 +24,10 @@
                                 @csrf
                                 <div class="d-flex">
                                     <div class="form-group mx-2">
-                                        <input type="date" class="form-control" placeholder="Start Date">
+                                        <input type="text" id="startdate" class="form-control" placeholder="Start Date">
                                     </div>
                                     <div class="form-group mx-2">
-                                        <input type="date" class="form-control" placeholder="End Date">
+                                        <input type="text" id="enddate" class="form-control" placeholder="End Date">
                                     </div>
                                     <button class="btn btn-success p-2" style="height: 2.4rem">Search</button>
                                 </div>
@@ -82,7 +87,22 @@
 @endsection
 
 @push('addon-script')
-<script>
 
+<script src="{{asset('assets/libs/flatpickr/flatpickr.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        var startDateInput = $('#startdate').flatpickr({
+                altInput: true,
+                altFormat: "d M, Y",
+                dateFormat: "Y-m-d",
+                allowInput: true
+            });
+            var startDateInput = $('#enddate').flatpickr({
+                altInput: true,
+                altFormat: "d M, Y",
+                dateFormat: "Y-m-d",
+                allowInput: true
+            });
+    })
 </script>
 @endpush

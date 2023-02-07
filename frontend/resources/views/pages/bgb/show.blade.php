@@ -67,29 +67,6 @@
       </button>
     </div>
     <div class="modal-body">
-      <div class="row">
-        <div class="col">
-            <div class="card rounded m-3 p2">
-                <div class="card-body">
-                    <p>{ Name Sales }</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card rounded m-3 p2">
-                <div class="card-body">
-                    <p>{ Status }</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card rounded m-3 p2">
-                <div class="card-body">
-                    <p>{ Link Tracking }</p>
-                </div>
-            </div>
-        </div>
-      </div>
         <div class="card rounded m-3 p2">
             <div class="card-body">
                 <div class="row">
@@ -97,7 +74,7 @@
                         <p>{ Customer }</p>
                     </div>
                     <div class="col">
-                        <p>Cek Details</p>
+                        <p>Details Progress Customer</p>
                     </div>
                 </div>
             </div>
@@ -120,16 +97,65 @@
                 <td>257.283.0.12</td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
                 <td>Success</td>
-                <td>
-                    V
+                <td for="openlink">
+                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
+                        <input name="pekerjaan[]" id="openlink" type="checkbox" checked value="true">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Follow Up Ha</td>
+                <td></td>
+                <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
+                <td>Success</td>
+                <td for="followup">
+                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
+                        <input name="pekerjaan[]" id="followup" type="checkbox" value="Instalasi">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Pembuatan SP/Closing</td>
+                <td></td>
+                <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
+                <td>Success</td>
+                <td for="pembuatanSP">
+                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
+                        <input name="pekerjaan[]" id="pembuatanSP" type="checkbox" value="Instalasi">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PPJB</td>
+                <td></td>
+                <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
+                <td>Success</td>
+                <td for="ppjb">
+                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
+                        <input name="pekerjaan[]" id="ppjb" type="checkbox" value="Instalasi">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Pencairan Dana</td>
+                <td></td>
+                <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
+                <td>Success</td>
+                <td for="pencairandana">
+                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
+                        <input name="pekerjaan[]" id="pencairandana" type="checkbox" value="Instalasi">
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-warning">Updated</button>
     </div>
   </div>
 </div>

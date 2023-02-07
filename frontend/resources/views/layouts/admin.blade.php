@@ -44,7 +44,7 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              href="{{ route('dashboard')}}"
+              href="{{ route('home')}}"
               class="list-group-item list-group-item-action"
             >
               Beranda
@@ -111,8 +111,8 @@
     @stack('prepend-script')
     
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>   
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{url('/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
