@@ -50,7 +50,7 @@
               Beranda
             </a>
             <a href="{{ route('url-sales.index')}}" class="list-group-item list-group-item-action">BGB</a>            
-            @if(Auth::user()->role_id == 'admin')
+            @if(Auth::user()->role_id == 2)
             <a
               href="{{ route('katalog.index')}}"
                   class="list-group-item list-group-item-action {{ (request()->is("admin/category*")) ? 'active' : '' }}"
