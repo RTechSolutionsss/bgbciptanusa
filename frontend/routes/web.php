@@ -5,6 +5,7 @@ use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UrlSalesController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,7 +21,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return view('auth.login', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -30,13 +31,11 @@ Route::get('/', function () {
 
 Route::middleware([
     'auth:sanctum',
+    'auth','admin',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-        // return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
     Route::get('/cekregist', function () {
         return Inertia::render('CheckRegist');
     })->name('cekregist');
@@ -46,3 +45,19 @@ Route::middleware([
     Route::resource('user', UserController::class);
     Route::resource('url-sales', UrlSalesController::class);
 });
+
+Auth::routes();
+
+Route::middleware([
+    'auth:sanctum',
+    'auth','admin',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'sales'])->name('home');
+    Route::get('/cekregist', function () {
+        return Inertia::render('CheckRegist');
+    })->name('cekregist');
+});
+
+// Route::get('/home', [HomeController::class, 'index'])->name('home');

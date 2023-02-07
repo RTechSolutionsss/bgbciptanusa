@@ -88,39 +88,13 @@ const logout = () => {
                                             </div>
                                         </li>
                                         <li class="rounded-sm">
-                                            <button
-                                                @click="show = !show"
-                                                class="inline-flex items-center border pl-4 border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition pr-2 py-2 space-x-3 "
-                                            >
-                                                <span class="mr-32">BGB</span>
-                                                <svg
-                                                class="w-5 h-5 text-indigo-100 dark:text-white"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20"
-                                                fill="currentColor"
-                                                >
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd"
-                                                />
-                                                </svg>
-                                            </button>
-                                            <!-- Dropdown menu -->
-                                            <div
-                                                v-show="show"
-                                                class="
-                                                pr-3
-                                                "
-                                            >
-                                                <NavLink
+                                            <NavLink
                                                 :href="route('url-sales.index')" :active="route().current('url-sales.index')"
                                                 >
-                                                    <div class="w-44 flex pr-12 py-2 space-x-3 rounded-md">
-                                                        <span class="mt-1">All BGB</span>
-                                                    </div>
-                                                </NavLink>
-                                            </div>
+                                                <div class="w-44 flex pr-12 py-2 space-x-3 rounded-md">
+                                                    <span class="mt-1">BGB</span>
+                                                </div>
+                                            </NavLink>
                                         </li>
 
                                         <!-- <li class="rounded-sm my-3">
@@ -164,28 +138,6 @@ const logout = () => {
                                                     </svg>
 
                                                     <span class="mt-1">Log Activity</span>
-                                                </div>
-                                            </NavLink>
-                                        </li>
-                                        <li class="rounded-sm mb-3">
-                                            <NavLink  :href="route('user.index')" :active="route().current('user.index')">
-                                                <div class="flex pr-10 py-2 space-x-3 rounded-md">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke-width="1.5"
-                                                        stroke="currentColor"
-                                                        class="w-6 h-6"
-                                                    >
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                                                        />
-                                                    </svg>
-
-                                                    <span class="mt-1">User Management</span>
                                                 </div>
                                             </NavLink>
                                         </li>
