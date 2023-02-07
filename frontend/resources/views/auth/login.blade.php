@@ -11,7 +11,7 @@
 
                 <div class="card-body text-center">
                     <div class="row mb-3">
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-6 mx-auto">
                             <img class="img-responsive text-center" src="{{ url('img/logo.png')}}">
                         </div>
                     </div>

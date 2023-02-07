@@ -20,6 +20,7 @@
                         <div class="text-right">
                             <h2>{{ Carbon\Carbon::now()->format('d-M-Y') }}</h2>
 
+                            @if(Auth::user()->role_id == 'admin')
                             <form action="">
                                 @csrf
                                 <div class="d-flex">
@@ -33,6 +34,7 @@
                                 </div>
                                
                             </form>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="col">

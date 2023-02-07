@@ -50,12 +50,14 @@
               Beranda
             </a>
             <a href="{{ route('url-sales.index')}}" class="list-group-item list-group-item-action">BGB</a>            
+            @if(Auth::user()->role_id == 'admin')
             <a
               href="{{ route('katalog.index')}}"
                   class="list-group-item list-group-item-action {{ (request()->is("admin/category*")) ? 'active' : '' }}"
                 >
                   Katalog
             </a>
+            @endif
             <form action="{{ route('logout')}}" method="POST">
               @csrf
               <button class="list-group-item list-group-item-action">Sign Out</button>

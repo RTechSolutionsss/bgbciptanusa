@@ -31,6 +31,7 @@ Route::get('/', function () {
 
 Route::middleware([
     'auth:sanctum',
+    'auth','admin',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
@@ -46,5 +47,17 @@ Route::middleware([
 });
 
 Auth::routes();
+
+Route::middleware([
+    'auth:sanctum',
+    'auth','admin',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'sales'])->name('home');
+    Route::get('/cekregist', function () {
+        return Inertia::render('CheckRegist');
+    })->name('cekregist');
+});
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
