@@ -9,6 +9,8 @@ class catalogs extends Model
 {
     use HasFactory;
 
+    protected $table = 'catalogs';
+
     protected $fillable = [
         'created_by','category','updated_at'  
     ];

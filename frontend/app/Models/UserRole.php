@@ -19,6 +19,10 @@ class UserRole extends Model
      *
      * @var string<int, string>
      */
+    protected $table = 'user_role';
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'role_name'
     ];

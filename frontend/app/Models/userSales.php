@@ -9,6 +9,10 @@ class userSales extends Model
 {
     use HasFactory;
 
+    protected $table = 'user_sales';
+
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'status', 'link', 'user_id'
     ];

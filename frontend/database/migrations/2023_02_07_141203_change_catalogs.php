@@ -31,7 +31,6 @@ return new class extends Migration
         });
 
         DB::statement("INSERT INTO user_role (role_name, created_at) VALUES ('ADMIN', NOW()),('SALES',NOW()),('CUSTOMER',NOW())");
-        //DB::statement("INSERT INTO users (name, email, password, profile_photo_path, phone, attachment_ktp, attachment_npwp, attachment_saving_book,role_id,parent_id) VALUES ('administrator', 'email.email.com','', '1234567890', '','','',1,0");
     }
 
     /**
