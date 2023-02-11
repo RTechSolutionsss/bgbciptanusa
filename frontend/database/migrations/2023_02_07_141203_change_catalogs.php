@@ -30,7 +30,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement("INSERT INTO user_role (role_name, created_at) VALUES ('ADMIN', NOW()),('SALES',NOW()),('CUSTOMER',NOW())");
+        DB::statement("INSERT INTO user_role (role_name, created_at) VALUES ('Administrator', NOW()),('Sales BGB',NOW()),('Customer',NOW())");
     }
 
     /**

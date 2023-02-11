@@ -14,6 +14,6 @@ class trackingUrlTasks extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 'user_id', 'ip_address','status','is_checklist', 'checklist_at'
+        'name', 'user_id', 'ip_address','status', 'status_changed_at'
     ];
 }
