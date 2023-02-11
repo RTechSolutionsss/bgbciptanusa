@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Inertia\Inertia;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -14,8 +15,9 @@ class UrlSalesController extends Controller
      */
     public function index()
     {
+        $user = User::all();
         // return Inertia::render('urlsales');
-        return view('pages.bgb.index');
+        return view('pages.bgb.index', compact('user'));
     }
 
     /**

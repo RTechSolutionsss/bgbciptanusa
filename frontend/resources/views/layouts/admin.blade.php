@@ -49,7 +49,7 @@
             >
               Beranda
             </a>
-            <a href="{{ route('url-sales.index')}}" class="list-group-item list-group-item-action">BGB</a>            
+            <a href="{{Auth::user()->role_id == 2 ? route('url-sales.index') : route('url-sales.show', '1')}}" class="list-group-item list-group-item-action">BGB</a>            
             @if(Auth::user()->role_id == 2)
             <a
               href="{{ route('katalog.index')}}"

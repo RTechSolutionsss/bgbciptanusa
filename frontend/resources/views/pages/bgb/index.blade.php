@@ -14,9 +14,9 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between m-2">
                                 <h4>Data BGB</h4>
-                                
+                                @if(Auth::user()->role_id == 2)
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Data</button>
-
+                                @endif
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
@@ -33,9 +33,9 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Achmad</td>
-                                            <td>08921</td>
-                                            <td>link.com</td>
+                                            <td>Tejo</td>
+                                            <td>0892191230772</td>
+                                            <td>www.link.com</td>
                                             <td>Gold</td>
                                             <td>
                                                 <a href="{{ route('url-sales.show', '1')}}">Details</a>
@@ -66,43 +66,44 @@
       </button>
     </div>
     <div class="modal-body">
-      <form action="">
+      <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="name" class="form-control">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label for="">Username</label>
-                    <input type="text" class="form-control">
+                    <label for="">E-mail</label>
+                    <input type="email" name="email" class="form-control">
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
+
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Link BGB</label>
-                    <input type="text" class="form-control">
+                    <select name="link" class="form-control">
+                        <option value="Grahayana">Grahayana</option>
+                        <option value="KGV3">KGV3</option>
+                    </select>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Send To</label>
-                    <input type="text" class="form-control">
+                    <select name="link" class="form-control">
+                        <option value="email">E-mail</option>
+                        <option value="wa">Whatsapp</option>
+                    </select>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Nomor Hp</label>
-                    <input type="text" class="form-control">
+                    <input type="number" name="phone" class="form-control">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -110,27 +111,25 @@
             <p class="m-2">Attachment</p>
                 <div class="form-group">
                     <label for="">KTP</label>
-                    <input type="file" class="form-control">
+                    <input type="file" name="ktp" class="form-control">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group mt-4 pt-3">
                     <label for="">NPWP</label>
-                    <input type="file" class="form-control">
+                    <input type="file" name="npwp" class="form-control">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Buku Tabungan/ Rek</label>
-                    <input type="file" class="form-control">
+                    <input type="file" name="saving_book" class="form-control">
                 </div>
             </div>
         </div>
+        
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
     </div>
   </div>
 </div>

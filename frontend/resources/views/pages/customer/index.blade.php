@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Katalog Grahayana</h1>
+        <h3>Katalog Grahayana</h3>
         <section class="store-new-products">
             <div class="container">
               <div class="row">
@@ -84,6 +84,86 @@
                       ></div>
                     </div>
                     <div class="products-text">Rumah 4</div>
+                    <div class="products-price">Rp. 200.000.000</div>
+                  </a>
+                </div>                
+              </div>
+            </div>
+          </section>
+
+          <h3 class="my-3">Katalog KGV3</h3>
+        <section class="store-new-products">
+            <div class="container">
+              <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                  <h5>New Products</h5>
+                </div>
+              </div>
+              <div class="row">
+                @php
+                    $incrementProduct = 0
+                @endphp
+                <div
+                  class="col-6 col-md-6 col-lg-3 shadow"
+                  data-aos="fade-up"
+                  data-aos-delay="{{ $incrementProduct += 100}}"
+                >
+                  <a href="{{ route('customer.create')}}" class="component-products d-block">
+                    <div class="products-thumbnail">
+                      <div
+                        class="products-image"
+                        style="background-image: url('img/aswana_01A.png')"
+                      ></div>
+                    </div>
+                    <div class="products-text">Rumah 6</div>
+                    <div class="products-price">Rp. 200.000.000</div>
+                  </a>
+                </div> 
+                <div
+                  class="col-6 col-md-6 col-lg-3 shadow"
+                  data-aos="fade-up"
+                  data-aos-delay="{{ $incrementProduct += 100}}"
+                >
+                  <a href="{{ route('customer.create')}}" class="component-products d-block">
+                    <div class="products-thumbnail">
+                      <div
+                        class="products-image"
+                        style="background-image: url('img/bhuvana_3.png')"
+                      ></div>
+                    </div>
+                    <div class="products-text">Rumah 7</div>
+                    <div class="products-price">Rp. 329.000.000</div>
+                  </a>
+                </div> 
+                <div
+                  class="col-6 col-md-6 col-lg-3 shadow"
+                  data-aos="fade-up"
+                  data-aos-delay="{{ $incrementProduct += 100}}"
+                >
+                  <a href="{{ route('customer.create')}}" class="component-products d-block">
+                    <div class="products-thumbnail">
+                      <div
+                        class="products-image"
+                        style="background-image: url('img/bhuvana_5.png')"
+                      ></div>
+                    </div>
+                    <div class="products-text">Rumah 8</div>
+                    <div class="products-price">Rp. 988.000.000</div>
+                  </a>
+                </div> 
+                <div
+                  class="col-6 col-md-6 col-lg-3 shadow"
+                  data-aos="fade-up"
+                  data-aos-delay="{{ $incrementProduct += 100}}"
+                >
+                  <a href="{{ route('customer.create')}}" class="component-products d-block">
+                    <div class="products-thumbnail">
+                      <div
+                        class="products-image"
+                        style="background-image: url('img/aswana_01A.png')"
+                      ></div>
+                    </div>
+                    <div class="products-text">Rumah 9</div>
                     <div class="products-price">Rp. 200.000.000</div>
                   </a>
                 </div>                

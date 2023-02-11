@@ -4,6 +4,12 @@
     User | BGB SYSTEM
 @endsection
 
+@push('addon-style')  
+  <style>
+    .mySelect option[value="COMPLETED"] { background-color: #28a745; color: white }
+    .mySelect option[value="REJECT"] { background-color: #dc3545 ; color: white }
+  </style>  
+@endpush
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
@@ -20,9 +26,9 @@
                                 <table class="table table-hover scroll-horizontal-vertical w-100" >
                                     <thead>
                                         <tr>
-                                            <th>{ Nama Sales }</th>
-                                            <th>{ Status }</th>
-                                            <th>{ Link Tracking }</th>
+                                            <th>Ahmad</th>
+                                            <th style="background-color: gold">Gold</th>
+                                            <th>www.customer.com/</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -71,7 +77,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>{ Customer }</p>
+                        <p>Ibu Cristin</p>
                     </div>
                     <div class="col">
                         <p>Details Progress Customer</p>
@@ -87,7 +93,6 @@
                 <th>Ip Address</th>
                 <th>Create Date</th>
                 <th>Status</th>
-                <th>Checklist</th>
             </tr>
         </thead>
         <tbody>
@@ -96,11 +101,16 @@
                 <td>Open Link BGB</td>
                 <td>257.283.0.12</td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
-                <td>Success</td>
-                <td for="openlink">
-                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
-                        <input name="pekerjaan[]" id="openlink" type="checkbox" checked value="true">
-                    </div>
+                <td>
+                    @if(Auth::user()->role_id == 2)
+                    <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
+                        <option value="ON PROGRESS">ON PROGRESS</option>
+                        <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
+                        <option value="REJECT" class="text-white bg-danger">REJECT</option>
+                    </select>
+                    @else
+                        <p id="status">Success</p>
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -108,11 +118,16 @@
                 <td>Follow Up Ha</td>
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
-                <td>Success</td>
-                <td for="followup">
-                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
-                        <input name="pekerjaan[]" id="followup" type="checkbox" value="Instalasi">
-                    </div>
+                <td>
+                    @if(Auth::user()->role_id == 2)
+                    <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
+                        <option value="ON PROGRESS">ON PROGRESS</option>
+                        <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
+                        <option value="REJECT" class="text-white bg-danger">REJECT</option>
+                    </select>
+                    @else
+                        <p id="status">Success</p>
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -120,11 +135,16 @@
                 <td>Pembuatan SP/Closing</td>
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
-                <td>Success</td>
-                <td for="pembuatanSP">
-                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
-                        <input name="pekerjaan[]" id="pembuatanSP" type="checkbox" value="Instalasi">
-                    </div>
+                <td>
+                    @if(Auth::user()->role_id == 2)
+                    <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
+                        <option value="ON PROGRESS">ON PROGRESS</option>
+                        <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
+                        <option value="REJECT" class="text-white bg-danger">REJECT</option>
+                    </select>
+                    @else
+                        <p id="status">Success</p>
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -132,11 +152,16 @@
                 <td>PPJB</td>
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
-                <td>Success</td>
-                <td for="ppjb">
-                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
-                        <input name="pekerjaan[]" id="ppjb" type="checkbox" value="Instalasi">
-                    </div>
+                <td>
+                    @if(Auth::user()->role_id == 2)
+                    <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
+                        <option value="ON PROGRESS">ON PROGRESS</option>
+                        <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
+                        <option value="REJECT" class="text-white bg-danger">REJECT</option>
+                    </select>
+                    @else
+                        <p id="status">Success</p>
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -144,23 +169,41 @@
                 <td>Pencairan Dana</td>
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
-                <td>Success</td>
-                <td for="pencairandana">
-                    <div class="checkbox checkbox-primary checkbox-circle mb-2">
-                        <input name="pekerjaan[]" id="pencairandana" type="checkbox" value="Instalasi">
-                    </div>
+                <td>
+                    @if(Auth::user()->role_id == 2)
+                    <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
+                        <option value="ON PROGRESS">ON PROGRESS</option>
+                        <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
+                        <option value="REJECT" class="text-white bg-danger">REJECT</option>
+                    </select>
+                    @else
+                        <p id="status">Success</p>
+                    @endif
                 </td>
             </tr>
         </tbody>
     </table>
     </div>
+    @if(Auth::user()->role_id == 2)
     <div class="modal-footer">
       <button type="button" class="btn btn-warning">Updated</button>
     </div>
+    @endif
   </div>
 </div>
 </div>
 <script>
+
+        function onSelectChange(){
+            if (document.getElementById('mySelect').value == "COMPLETED"){
+                document.getElementById('mySelect').className = 'form-control text-white bg-success';
+                document.getElementById('mySelect').className = 'text-success';
+            } else if(document.getElementById('mySelect').value == "REJECT") {
+                document.getElementById('mySelect').className = 'form-control text-white bg-danger'
+            }else{
+                document.getElementById('mySelect').className = 'form-control'
+            }
+        }
     $(document).ready(function () {
         $('#crudTable').DataTable({
             dom: 'Bfrtip',

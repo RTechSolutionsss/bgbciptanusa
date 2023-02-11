@@ -16,15 +16,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between m-2">                            
+                        {{-- <div class="d-flex justify-content-between m-2">                            
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Katalog</button>
-                        </div>
+                        </div> --}}
                     <div class="table-responsive">
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Sales</th>
+                                    <th>Katalog</th>
                                     <th>Url</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -32,9 +32,17 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Udin</td>
+                                        <td>Grahayan</td>
                                         <td>
-                                            www.url.com 
+                                            www.Grahayan.com 
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>KGV3</td>
+                                        <td>
+                                            www.KGV3.com 
                                         </td>
                                         <td></td>
                                     </tr>

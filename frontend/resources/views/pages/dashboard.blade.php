@@ -40,10 +40,10 @@
                             <div class="col">
                                 <div class="card rounded m-3 p2">
                                     <div class="card-header">
-                                        <p>Data Baru</p>
+                                        <p>{{ Auth::user()->role_id != 2 ? 'Open LInk' : 'Data Baru'}}</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>2</h2>
+                                        <h2>0</h2>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                         <p>Closing/Pembuatan SP</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>1</h2>
+                                        <h2>0</h2>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                         <p>PPJB</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>2</h2>
+                                        <h2>0</h2>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                         <p>Pencairan dana</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>2</h2>
+                                        <h2>0</h2>
                                     </div>
                                 </div>
                             </div>
