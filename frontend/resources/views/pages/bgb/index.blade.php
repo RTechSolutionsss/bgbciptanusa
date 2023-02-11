@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between m-2">
                                 <h4>Data BGB</h4>
-                                @if(Auth::user()->role_id == 2)
+                                @if(Auth::user()->role_id == 1)
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Data</button>
                                 @endif
                             </div>

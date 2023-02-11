@@ -20,7 +20,7 @@
                         <div class="text-right">
                             <h2>{{ Carbon\Carbon::now()->format('d-M-Y') }}</h2>
 
-                            @if(Auth::user()->role_id == 2)
+                            @if(Auth::user()->role_id == 1)
                             <form action="">
                                 @csrf
                                 <div class="d-flex">
@@ -40,7 +40,7 @@
                             <div class="col">
                                 <div class="card rounded m-3 p2">
                                     <div class="card-header">
-                                        <p>{{ Auth::user()->role_id != 2 ? 'Open LInk' : 'Data Baru'}}</p>
+                                        <p>{{ Auth::user()->role_id == 1 ? 'Data Baru' : 'Open LInk'}}</p>
                                     </div>
                                     <div class="card-body text-right">
                                         <h2>0</h2>

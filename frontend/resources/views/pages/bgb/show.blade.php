@@ -102,7 +102,7 @@
                 <td>257.283.0.12</td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
                 <td>
-                    @if(Auth::user()->role_id == 2)
+                    @if(Auth::user()->role_id == 1)
                     <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
                         <option value="ON PROGRESS">ON PROGRESS</option>
                         <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
@@ -119,7 +119,7 @@
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
                 <td>
-                    @if(Auth::user()->role_id == 2)
+                    @if(Auth::user()->role_id == 1)
                     <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
                         <option value="ON PROGRESS">ON PROGRESS</option>
                         <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
@@ -136,7 +136,7 @@
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
                 <td>
-                    @if(Auth::user()->role_id == 2)
+                    @if(Auth::user()->role_id == 1)
                     <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
                         <option value="ON PROGRESS">ON PROGRESS</option>
                         <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
@@ -153,7 +153,7 @@
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
                 <td>
-                    @if(Auth::user()->role_id == 2)
+                    @if(Auth::user()->role_id == 1)
                     <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
                         <option value="ON PROGRESS">ON PROGRESS</option>
                         <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
@@ -170,7 +170,7 @@
                 <td></td>
                 <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
                 <td>
-                    @if(Auth::user()->role_id == 2)
+                    @if(Auth::user()->role_id == 1)
                     <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
                         <option value="ON PROGRESS">ON PROGRESS</option>
                         <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
@@ -184,7 +184,7 @@
         </tbody>
     </table>
     </div>
-    @if(Auth::user()->role_id == 2)
+    @if(Auth::user()->role_id == 1)
     <div class="modal-footer">
       <button type="button" class="btn btn-warning">Updated</button>
     </div>

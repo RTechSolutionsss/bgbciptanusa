@@ -48,9 +48,9 @@
               class="list-group-item list-group-item-action"
             >
               Beranda
-            </a>
-            <a href="{{Auth::user()->role_id == 2 ? route('url-sales.index') : route('url-sales.show', '1')}}" class="list-group-item list-group-item-action">BGB</a>            
-            @if(Auth::user()->role_id == 2)
+            </a>  
+            <a href="{{Auth::user()->role_id == 1 ? route('url-sales.index') : route('url-sales.show', '1')}}" class="list-group-item list-group-item-action">BGB</a>            
+            @if(Auth::user()->role_id == 1)
             <a
               href="{{ route('katalog.index')}}"
                   class="list-group-item list-group-item-action {{ (request()->is("admin/category*")) ? 'active' : '' }}"
