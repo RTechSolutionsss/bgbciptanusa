@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UrlSalesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserSalesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -41,6 +42,7 @@ Route::middleware([
         return Inertia::render('CheckRegist');
     })->name('cekregist');
 
+    Route::get('usersales-edit', [UserSalesController::class, 'Edit'])->name('usersales.edit');
     Route::resource('logactivity', LogActivityController::class);
     Route::resource('katalog', KatalogController::class);
     Route::resource('user', UserController::class);

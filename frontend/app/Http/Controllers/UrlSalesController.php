@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Models\UserRole;
 
 use Illuminate\Http\Request;
 
@@ -15,9 +16,10 @@ class UrlSalesController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $users = User::with('usersales')->get();
+        $roles = UserRole::all();
         // return Inertia::render('urlsales');
-        return view('pages.bgb.index', compact('user'));
+        return view('pages.bgb.index', compact('users','roles'));
     }
 
     /**
@@ -49,7 +51,8 @@ class UrlSalesController extends Controller
      */
     public function show($id)
     {
-        return view('pages.bgb.show');
+        $user = User::with('usersales','usercustomer.trackingurl')->findOrFail($id);
+        return view('pages.bgb.show',compact('user'));
     }
 
     /**

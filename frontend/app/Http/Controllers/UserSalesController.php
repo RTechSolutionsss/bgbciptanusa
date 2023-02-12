@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UserRole;
+use App\Models\User;
+Use Alert;
 
 class UserSalesController extends Controller
 {
@@ -17,7 +20,7 @@ class UserSalesController extends Controller
         ->skip(($page * $limit) - 1)
         ->take($limit)
         ->get();
-        //return view('companies.index', compact('companies'));
+        return view('companies.index', compact('companies'));
     }
 
     public function getDetails($id)
@@ -30,12 +33,13 @@ class UserSalesController extends Controller
         //return view('ocmpanies.index', compact('companies'));
     }
 
-    public function Edit($id, UserRole $data)
+    public function Edit(Request $request)
     {
-        $request =  $data->all();
-        $finalData = UserRole::findOrFail($id);
-        $finalData->update($request);
-
-        //return view('ocmpanies.index', compact('companies'));
+        $data =  $request->all();
+        dd($data);
+        $user = User::findOrFail($data['id']);
+        $user->update($data);
+        Alert::success('Success', 'Data User Berhasil di updated');
+        return back();
     }
 }

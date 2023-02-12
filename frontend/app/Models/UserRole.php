@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
 {
-    use HasApiTokens;
+    // use HasApiTokens;
     use HasFactory;
-    use HasProfilePhoto;
-    use HasTeams;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    // use HasProfilePhoto;
+    // use HasTeams;
+    // use Notifiable;
+    // use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +26,9 @@ class UserRole extends Model
     protected $fillable = [
         'role_name'
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserRole::class, 'id', 'role_id');
+    }
 }
