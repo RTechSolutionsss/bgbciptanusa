@@ -19,10 +19,35 @@ class UserSalesController extends Controller
         ->get();
         //return view('companies.index', compact('companies'));
     }
+    public function indexWithDetail($keyword, $page, $limit)
+    {
+        $page= isset($page) && $page != null && $page != 0 ? $page : 1;
+        $limit = isset($limit) && $limit != null && $limit != 0 ? $limit : 10;
+        
+        $sales = DB::table('user_sales')
+        ->where('link', 'like', `$keyword`)
+        ->orWhere('status', 'like', `$keyword`)
+        ->orderBy('created_at', 'desc')
+        ->skip(($page * $limit) - 1)
+        ->take($limit)
+        ->get();
+        
+        $parent_id =array_column($sales, 'id');
 
+
+        $customer = DB::table('users')
+        ->where('parent_id', 'in', `$parent_id`)
+        ->orWhere('status', 'like', `$keyword`)
+        ->orderBy('created_at', 'desc')
+        ->skip(($page * $limit) - 1)
+        ->take($limit)
+        ->get();
+        //return view('companies.index', compact('companies'));
+    }
+    
     public function getDetails($id)
     {
-        $users = DB::table('user_role')
+        $users = DB::table('user_sales')
                 ->where('id', '=', $id)
                 ->orderBy('created_at', 'desc')
                 ->first();
