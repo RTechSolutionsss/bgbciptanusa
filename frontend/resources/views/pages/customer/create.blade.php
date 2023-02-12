@@ -27,11 +27,12 @@
                         <div class="products-thumbnail my-2" style="height: 200px">
                             <div
                             class="products-image"
-                            style="background-image: url('/img/aswana_01A.png')"
+                            style="background-image: url('{{ Storage::url($product->image) }}')"
                             ></div>
                         </div>
-                        <div class="products-text">Rumah 1</div>
-                        <div class="products-price">Rp. 200.000.000</div>
+                        <div class="products-text">{{ $product->name ?? "Rumah 1" }}</div>
+                        <div class="products-price">{{ $product->price ?? "0" }}</div>
+                        <p>{{ $product->description ?? "Rumah bagus" }}</p>
                         <form action="{{ route('customer.store')}}">
                             @csrf
                             <div class="row">

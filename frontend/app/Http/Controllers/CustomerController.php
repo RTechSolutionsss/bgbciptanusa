@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\catalogs;
+use App\Models\products;
 
 class CustomerController extends Controller
 {
@@ -13,7 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('pages.customer.index');
+        $katalog = catalogs::with('product')->get();
+        return view('pages.customer.index', compact('katalog'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('pages.customer.create');
+        //
     }
 
     /**
@@ -56,7 +59,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = products::findOrFail($id);
+        return view('pages.customer.create', compact('product'));
     }
 
     /**

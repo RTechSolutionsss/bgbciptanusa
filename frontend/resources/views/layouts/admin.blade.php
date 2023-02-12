@@ -12,14 +12,17 @@
     <title>@yield('title')</title>
 
     @stack('prepend-style')
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" />
  
     @stack('addon-style')
   </head>
 
   <body>
+    
+    @include('sweetalert::alert')
     <div class="page-dashboard">
       <div class="d-flex" id="wrapper" data-aos="fade-right">
         <!-- sidebar -->
@@ -49,7 +52,7 @@
             >
               Beranda
             </a>  
-            <a href="{{Auth::user()->role_id == 1 ? route('url-sales.index') : route('url-sales.show', '1')}}" class="list-group-item list-group-item-action">BGB</a>            
+            <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', '1')}}" class="list-group-item list-group-item-action">BGB</a>            
             @if(Auth::user()->role_id == 1)
             <a
               href="{{ route('katalog.index')}}"
@@ -111,12 +114,14 @@
     </div>
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
-    
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+    <script type="text/javascript" src="{{ url('js/datatables.min.js')}}"></script>   
     <script src="{{url('/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{url('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
+    <script type="text/javascript" src="{{url('js/datatables2.min.js')}}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script>
       AOS.init();
     </script>

@@ -26,9 +26,9 @@
                                 <table class="table table-hover scroll-horizontal-vertical w-100" >
                                     <thead>
                                         <tr>
-                                            <th>Ahmad</th>
-                                            <th style="background-color: gold">Gold</th>
-                                            <th>www.customer.com/</th>
+                                            <th>{{ $user->name }}</th>
+                                            <th style="background-color: {{ $user->usersales->status == 'GOLD' ? 'gold' : 'silver'}}">{{ $user->usersales->status }}</th>
+                                            <th>{{ $user->usersales->link }}</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -41,13 +41,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse($user->usercustomer as $customer)
                                         <tr>
-                                            <td>Ibu Fandi</td>
+                                            <td></td>
                                             <td class="bg-warning text-black">On Progress</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Details</button>
                                             </td>
                                         </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="3">Not Found</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

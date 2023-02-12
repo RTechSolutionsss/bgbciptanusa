@@ -8,6 +8,8 @@ use ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Http\Request;
+use Redirect,Response;
+Use Alert;
 
 class UserController extends Controller
 {
@@ -24,19 +26,14 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $result = User::find($id);
+        //
     
     }
 
-    public function edit($id, array $data)
+    public function edit($id)
     {
-        $result = DB::table('users')
-        ->where('id', 1)
-        ->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = User::with('usersales','userrole')->findOrFail($id);
+        return Response::json($user); 
     }
 
    
@@ -49,7 +46,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = DB::table('users')
+        ->where('id', 1)
+        ->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     /**
@@ -60,6 +63,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+  
+        Alert::success('Success', 'Data User Berhasil di hapus');
+        return back();
     }
 }

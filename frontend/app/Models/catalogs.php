@@ -12,11 +12,11 @@ class catalogs extends Model
     protected $table = 'catalogs';
 
     protected $fillable = [
-        'created_by','category','updated_at'  
+        'category' 
     ];
 
-    public function post()
+    public function product()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(products::class, 'id_category', 'id');
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 use Inertia\Inertia;
-use App\Models\catalogs;
-use Illuminate\Http\Request;
-Use Alert;
-use Redirect,Response;
+use App\Models\User;
+use App\Models\UserRole;
 
-class KatalogController extends Controller
+use Illuminate\Http\Request;
+
+class UrlSalesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,10 @@ class KatalogController extends Controller
      */
     public function index()
     {
-        $katalog = catalogs::all();
-        return view('pages.katalog.index', compact('katalog'));
+        $users = User::with('usersales')->get();
+        $roles = UserRole::all();
+        // return Inertia::render('urlsales');
+        return view('pages.bgb.index', compact('users','roles'));
     }
 
     /**
@@ -38,11 +40,7 @@ class KatalogController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        catalogs::create($data);
-
-        Alert::success('Success', 'Data Katalog Berhasil di input');
-        return back();
+        //
     }
 
     /**
@@ -53,8 +51,8 @@ class KatalogController extends Controller
      */
     public function show($id)
     {
-        $katalog = catalogs::with('product')->findOrFail($id);
-        return view('pages.katalog.show', compact('katalog'));
+        $user = User::with('usersales','usercustomer.trackingurl')->findOrFail($id);
+        return view('pages.bgb.show',compact('user'));
     }
 
     /**
@@ -65,17 +63,7 @@ class KatalogController extends Controller
      */
     public function edit($id)
     {
-        $katalog = catalogs::findOrFail($id);
-        return Response::json($katalog); 
-    }
-
-    public function editing(Request $request)
-    {
-        $data =  $request->all();
-        $katalog = catalogs::findOrFail($data['id']);
-        $katalog->update($data);
-        Alert::success('Success', 'Data User Berhasil di updated');
-        return back();
+        //
     }
 
     /**
@@ -98,9 +86,6 @@ class KatalogController extends Controller
      */
     public function destroy($id)
     {
-        catalogs::find($id)->delete();
-  
-        Alert::success('Success', 'Data Katalog Berhasil di hapus');
-        return back();
+        //
     }
 }
