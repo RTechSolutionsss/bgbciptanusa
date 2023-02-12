@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Inertia\Inertia;
-use App\Models\catalogs;
-use Illuminate\Http\Request;
-Use Alert;
-use Redirect,Response;
 
-class KatalogController extends Controller
+use Illuminate\Http\Request;
+use Alert;
+use App\Models\products;
+
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class KatalogController extends Controller
      */
     public function index()
     {
-        $katalog = catalogs::all();
-        return view('pages.katalog.index', compact('katalog'));
+        //
     }
 
     /**
@@ -39,7 +37,8 @@ class KatalogController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        catalogs::create($data);
+        $data['image'] = $request->file('image')->store('assets/product/'. $request->id_category ,'public');
+        products::create($data);
 
         Alert::success('Success', 'Data Katalog Berhasil di input');
         return back();
@@ -53,8 +52,7 @@ class KatalogController extends Controller
      */
     public function show($id)
     {
-        $katalog = catalogs::with('product')->findOrFail($id);
-        return view('pages.katalog.show', compact('katalog'));
+        //
     }
 
     /**
@@ -65,17 +63,7 @@ class KatalogController extends Controller
      */
     public function edit($id)
     {
-        $katalog = catalogs::findOrFail($id);
-        return Response::json($katalog); 
-    }
-
-    public function editing(Request $request)
-    {
-        $data =  $request->all();
-        $katalog = catalogs::findOrFail($data['id']);
-        $katalog->update($data);
-        Alert::success('Success', 'Data User Berhasil di updated');
-        return back();
+        //
     }
 
     /**
@@ -98,9 +86,9 @@ class KatalogController extends Controller
      */
     public function destroy($id)
     {
-        catalogs::find($id)->delete();
+        products::find($id)->delete();
   
-        Alert::success('Success', 'Data Katalog Berhasil di hapus');
+        Alert::success('Success', 'Data Product Berhasil di hapus');
         return back();
     }
 }

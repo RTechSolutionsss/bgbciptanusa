@@ -39,7 +39,7 @@
                                                 <td>{{ $user->phone}}</td>
                                                 <td>{{ $user->usersales->link ?? " "}}</td>
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
-                                                <td class="d-flex">
+                                                <td class="d-inline-flex justify-content-center">
                                                     <a title="Detail" class="mx-1 w-50"href="{{ route('url-sales.show', $user->id)}}">
                                                         <img class="img-responsive" src="{{ url('/img/eye.png')}}" >
                                                     </a>
@@ -143,7 +143,6 @@
         </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- Modal -->

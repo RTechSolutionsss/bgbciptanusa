@@ -36,7 +36,6 @@ class UserSalesController extends Controller
     public function Edit(Request $request)
     {
         $data =  $request->all();
-        dd($data);
         $user = User::findOrFail($data['id']);
         $user->update($data);
         Alert::success('Success', 'Data User Berhasil di updated');
