@@ -32,11 +32,19 @@ class UserSalesController extends Controller
         ->take($limit)
         ->get();
         
-        $parent_id =array_column($sales, 'id');
+        $users = DB::table('users')
+        ->where('role_id', '=', `2`)
+        ->orWhere('status', 'like', `$keyword`)
+        ->orderBy('created_at', 'desc')
+        ->skip(($page * $limit) - 1)
+        ->take($limit)
+        ->get();
 
+        $parent_id =array_column($sales, 'user_id');
 
-        $customer = DB::table('users')
-        ->where('parent_id', 'in', `$parent_id`)
+        $customer = DB::table('user_customer')
+        ->select('*')
+        ->whereIn('parent_id',  $parent_id)
         ->orWhere('status', 'like', `$keyword`)
         ->orderBy('created_at', 'desc')
         ->skip(($page * $limit) - 1)
