@@ -51,7 +51,7 @@ class UrlSalesController extends Controller
      */
     public function show($id)
     {
-        $user = User::with('usersales','usercustomer.trackingurl')->findOrFail($id);
+        $user = User::with('usersales','usercustomer')->findOrFail($id);
         return view('pages.bgb.show',compact('user'));
     }
 

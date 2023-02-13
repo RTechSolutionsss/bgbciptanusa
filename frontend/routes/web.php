@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserSalesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TrackingUrlTasksController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -45,6 +46,7 @@ Route::middleware([
 
     Route::get('usersales-edit', [UserSalesController::class, 'Edit'])->name('usersales.edit');
     Route::get('katalog-edit', [KatalogController::class, 'editing'])->name('katalog.editing');
+    Route::get('task/{id}', [TrackingUrlTasksController::class, 'task'])->name('task');
     Route::resource('logactivity', LogActivityController::class);
     Route::resource('katalog', KatalogController::class);
     Route::resource('user', UserController::class);

@@ -16,4 +16,9 @@ class trackingUrlTasks extends Model
     protected $fillable = [
         'name', 'user_id', 'ip_address','status', 'status_changed_at'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

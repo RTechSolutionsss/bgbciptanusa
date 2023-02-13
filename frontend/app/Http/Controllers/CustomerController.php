@@ -59,7 +59,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $product = products::findOrFail($id);
+        $product = products::with('category')->findOrFail($id);
         return view('pages.customer.create', compact('product'));
     }
 

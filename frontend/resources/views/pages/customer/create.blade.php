@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container my-4">
-        <h1>Rumah 1</h1>
+        <h1>{{ $product->name_product ?? "Rumah 1" }} - {{ $product->category->category }}</h1>
         <section class="store-new-products">
             <div class="container">
               <div class="row">
@@ -30,7 +30,7 @@
                             style="background-image: url('{{ Storage::url($product->image) }}')"
                             ></div>
                         </div>
-                        <div class="products-text">{{ $product->name ?? "Rumah 1" }}</div>
+                        <div class="products-text">{{ $product->name_product ?? "Rumah 1" }}</div>
                         <div class="products-price">{{ $product->price ?? "0" }}</div>
                         <p>{{ $product->description ?? "Rumah bagus" }}</p>
                         <form action="{{ route('customer.store')}}">

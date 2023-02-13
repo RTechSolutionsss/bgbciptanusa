@@ -80,8 +80,13 @@ class User extends Authenticatable
         return $this->hasOne(UserRole::class, 'id', 'role_id');
     }
 
-    public function usercustomer()
+    public function datacustomer()
     {
         return $this->hasMany(UserCustomer::class, 'user_id', 'id');
+    }
+
+    public function usercustomer()
+    {
+        return $this->hasMany(User::class, 'parent_id', 'id');
     }
 }

@@ -17,8 +17,8 @@ class products extends Model
        'id_category', 'image','created_by','updated_at'  
     ];
 
-    public function post()
+    public function category()
     {
-        return $this->belongsTo(Post::class,'id_category');
+        return $this->belongsTo(catalogs::class,'id_category','id');
     }
 }
