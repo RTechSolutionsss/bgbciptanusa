@@ -178,7 +178,7 @@
                         $('#bgb_id').val(data.id);
                         $('#namecustomer').html(data[0].user.name);
                         for (let i = 0; i < data.length; ++i) {
-                            $('#dataurl').html('<tr><td>'+i+'</td><td>'+data[i].name+'</td><td>'+data[i].ip_address+'</td><td>'+data[i].created_at+'</td><td>'+data[i].status+'</td></tr>')
+                            $('#dataurl').append('<tr><td>'+i+'</td><td>'+data[i].name+'</td><td>'+data[i].ip_address+'</td><td>'+data[i].created_at+'</td><td>'+data[i].status+'</td></tr>')
                         }
                     })
             });

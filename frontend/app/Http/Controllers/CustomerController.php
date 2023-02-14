@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\catalogs;
 use App\Models\products;
+use App\Models\UserCustomer;
+use App\Models\trackingUrlTasks;
+use App\Models\User;
+use App\Models\UserSales;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+
 
 class CustomerController extends Controller
 {
@@ -37,7 +44,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,9 +53,57 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $katalog = catalogs::with('product')->get();
+        $length = 8;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $password = $randomString;
+        // User::updateOrCreate([
+
+        // ],
+        // [
+        //     'name' => 'Dummy',
+        //     'email' => 'dummy@gmail.com',
+        //     'password' => Hash::make($password),
+        //     'role_id' => 3,
+        //     'parent_id' => $id,
+        // ]);
+        $usercustomer = User::where('role_id', 3)->latest()->first('id');
+        // UserCustomer::updateOrCreate([
+
+        // ],
+        // [
+        //     'user_id' => $usercustomer->id,
+        //     'category_id' => 2,
+        //     'age' => 0,
+        //     'job' => 'dummy',
+        //     'source_information' => 'dummy',
+        // ]);
+        $trackingname = [
+            "Open link BGB",
+            "Followup HA",
+            "Pembuatan SP/Closing",
+            "PPJB",
+            "Pencairan Dana"
+        ];
+        for ($i=0; $i < count($trackingname); $i++) { 
+            trackingUrlTasks::create([
+                'name' => $trackingname[$i],
+                'user_id' => $usercustomer->id,
+                'ip_address' => $request->ip(),
+                'status_changed_at' => Carbon::now(),
+            ]);
+        }
+        $usercustomer->parent_id = $id;
+        $usercustomer->save();
+
+        return view('pages.customer.index', compact('katalog'));
     }
 
     /**

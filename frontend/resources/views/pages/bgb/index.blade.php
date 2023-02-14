@@ -156,7 +156,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -172,7 +172,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            {{-- <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Link BGB</label>
                     <select name="link" class="form-control">
@@ -180,7 +180,7 @@
                         <option value="KGV3">KGV3</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Send To</label>
