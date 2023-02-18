@@ -14,9 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('user_customer', function (Blueprint $table) {
-            $table->string("email");
-            $table->string("name");
-            $table->string("phone");
             $table->string("price");
             $table->enum('status',['COMPLETED', 'ON_PROGRESS', 'REJECTED'])->default('ON_PROGRESS');
             $table->softDeletes();
