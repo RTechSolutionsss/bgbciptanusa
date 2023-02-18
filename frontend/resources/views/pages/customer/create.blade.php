@@ -33,31 +33,37 @@
                         <div class="products-text">{{ $product->name_product ?? "Rumah 1" }}</div>
                         <div class="products-price">{{ $product->price ?? "0" }}</div>
                         <p>{{ $product->description ?? "Rumah bagus" }}</p>
-                        <form action="{{ route('customer.store')}}">
+                        <form action="{{ route('customer.store')}}" method="POST">
                             @csrf
+                            <input type="text" hidden value="{{ $product->id }}" name="category_id">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Nama</label>
-                                        <input class="form-control" name="name">
+                                        <input class="form-control" name="name" type="text">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">No. Telp aktif</label>
-                                        <input class="form-control" name="phone">
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">+62</div>
+                                            </div>
+                                            <input class="form-control" name="phone" type="number">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">E-mail</label>
-                                        <input class="form-control" name="email">
+                                        <input class="form-control" name="email" type="email">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Usia</label>
-                                        <input class="form-control" name="usia">
+                                        <input class="form-control" name="usia" type="number">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -69,7 +75,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Mendapat Informasi darimana</label>
-                                        <select class="form-control">
+                                        <select class="form-control" name="source_information">
                                             <option value="Link">Link</option>
                                             <option value="Brosur">Brosur</option>
                                         </select>

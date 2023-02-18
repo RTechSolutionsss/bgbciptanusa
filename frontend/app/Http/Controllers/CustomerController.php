@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\UserSales;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Alert;
 
 
 class CustomerController extends Controller
@@ -44,7 +45,22 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $tracking = trackingUrlTasks::where('ip_address', $request->ip())->first();
+        $user = User::where('id', $tracking->user_id)->first();
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->save();
+        UserCustomer::create([
+            'user_id' => $user->id,
+            'category_id' => $request->category_id,
+            'age' => $request->usia,
+            'job' => $request->pekerjaan,
+            'source_information' => $request->source_information,
+        ]);
+
+        Alert::success('Success', 'Data User Berhasil di input');
+        return back();
     }
 
     /**
@@ -57,51 +73,51 @@ class CustomerController extends Controller
     {
         $katalog = catalogs::with('product')->get();
         $length = 8;
+        $lengths = 3;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
+        $randomStr = '';
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        $password = $randomString;
-        // User::updateOrCreate([
-
-        // ],
-        // [
-        //     'name' => 'Dummy',
-        //     'email' => 'dummy@gmail.com',
-        //     'password' => Hash::make($password),
-        //     'role_id' => 3,
-        //     'parent_id' => $id,
-        // ]);
-        $usercustomer = User::where('role_id', 3)->latest()->first('id');
-        // UserCustomer::updateOrCreate([
-
-        // ],
-        // [
-        //     'user_id' => $usercustomer->id,
-        //     'category_id' => 2,
-        //     'age' => 0,
-        //     'job' => 'dummy',
-        //     'source_information' => 'dummy',
-        // ]);
-        $trackingname = [
-            "Open link BGB",
-            "Followup HA",
-            "Pembuatan SP/Closing",
-            "PPJB",
-            "Pencairan Dana"
-        ];
-        for ($i=0; $i < count($trackingname); $i++) { 
-            trackingUrlTasks::create([
-                'name' => $trackingname[$i],
-                'user_id' => $usercustomer->id,
-                'ip_address' => $request->ip(),
-                'status_changed_at' => Carbon::now(),
-            ]);
+        for ($i = 0; $i < $lengths; $i++) {
+            $randomStr .= $characters[rand(0, $charactersLength - 1)];
         }
-        $usercustomer->parent_id = $id;
-        $usercustomer->save();
+        $password = $randomString;
+        $random = $randomStr;
+        $email = 'dummy'.$random.'@gmail.com';
+        $tracking = trackingUrlTasks::where('ip_address', $request->ip())->first('ip_address');
+        if($tracking == null)
+        {
+            User::create(
+            [
+                'name' => 'Dummy',
+                'email' => $email,
+                'password' => Hash::make($password),
+                'role_id' => 3,
+                'parent_id' => $id,
+            ]);
+            
+            $usercustomer = User::where('role_id', 3)->latest()->first('id');
+            $trackingname = [
+                "Open link BGB",
+                "Followup HA",
+                "Pembuatan SP/Closing",
+                "PPJB",
+                "Pencairan Dana"
+            ];
+            for ($i=0; $i < count($trackingname); $i++) { 
+                trackingUrlTasks::create([
+                    'name' => $trackingname[$i],
+                    'user_id' => $usercustomer->id,
+                    'ip_address' => $request->ip(),
+                    'status_changed_at' => Carbon::now(),
+                ]);
+            }
+            $usercustomer->parent_id = $id;
+            $usercustomer->save();
+        }
 
         return view('pages.customer.index', compact('katalog'));
     }

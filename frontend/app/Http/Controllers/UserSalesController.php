@@ -20,6 +20,7 @@ class UserSalesController extends Controller
         ->skip(($page * $limit) - 1)
         ->take($limit)
         ->get();
+        
         return view('companies.index', compact('companies'));
     }
     public function indexWithDetail($keyword, $page, $limit)
@@ -63,7 +64,7 @@ class UserSalesController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-        //return view('ocmpanies.index', compact('companies'));
+        //return view('companies.index', compact('companies'));
     }
 
     public function Edit(Request $request)

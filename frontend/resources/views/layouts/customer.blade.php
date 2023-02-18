@@ -21,6 +21,7 @@
 
   <body>
     <div class="page-customer">
+        @include('sweetalert::alert')
         {{-- Content --}}
         @yield('content')
       </div>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\trackingUrlTasks;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -22,9 +25,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.dashboard');
+        $user = User::whereBetween('created_at', [$request->startdate ?? Carbon::now()->startOfYear(),$request->enddate ?? Carbon::now()->endOfYear()]);
+        $tracking = trackingUrlTasks::whereBetween('created_at', [$request->startdate ?? Carbon::now()->startOfYear(),$request->enddate ?? Carbon::now()->endOfYear()]);
+        return view('pages.dashboard',compact('user','tracking'));
     }
 
     /**
