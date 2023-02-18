@@ -21,7 +21,7 @@
                             <h2>{{ Carbon\Carbon::now()->format('d-M-Y') }}</h2>
 
                             @if(Auth::user()->role_id == 1)
-                            <form action="">
+                            <form action="{{ route('home')}}" method="GET">
                                 @csrf
                                 <div class="d-flex">
                                     <div class="form-group mx-2">
@@ -42,18 +42,30 @@
                                     <div class="card-header">
                                         <p>{{ Auth::user()->role_id == 1 ? 'Data Baru' : 'Open LInk'}}</p>
                                     </div>
+                                    @php($databgb = $user->where('role_id', 2)->count())
+                                    @php($datacustomer = $user->where('role_id', 3)->count())
                                     <div class="card-body text-right">
-                                        <h2>0</h2>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h4>Customer</h4>
+                                                <p>{{ $datacustomer }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h4>BGB</h4>
+                                                <p>{{ $databgb }}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card rounded m-3 p2">
+                                    @php($closesp = $tracking->where('name', 'Pembuatan SP/Closing')->where('status', 'COMPLETED')->count())
                                     <div class="card-header">
                                         <p>Closing/Pembuatan SP</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>0</h2>
+                                        <h2>{{ $closesp }}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -61,21 +73,23 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card rounded m-3 p2">
+                                    @php($ppjb = $tracking->where('name', 'PPJB')->where('status', 'COMPLETED')->count())
                                     <div class="card-header">
                                         <p>PPJB</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>0</h2>
+                                        <h2>{{ $ppjb }}</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card rounded m-3 p2">
+                                    @php($dana = $tracking->where('name', 'Pencairan Dana')->where('status', 'COMPLETED')->count())
                                     <div class="card-header">
                                         <p>Pencairan dana</p>
                                     </div>
                                     <div class="card-body text-right">
-                                        <h2>0</h2>
+                                        <h2>{{ $dana }}</h2>
                                     </div>
                                 </div>
                             </div>

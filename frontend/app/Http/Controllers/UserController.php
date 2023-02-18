@@ -58,24 +58,24 @@ class UserController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         $password = $randomString;
-        // User::create([
-        //     "name" => $request->name,
-        //     "email" => $request->email,
-        //     "password" => Hash::make($password),
-        //     "phone" => $request->phone,
-        //     "role_id" => 2,
-        //     "attachment_ktp" => $data['ktp'] ?? null,
-        //     "attachment_npwp" => $data['npwp'] ?? null,
-        //     "attachment_saving_book" => $data['saving_book'] ?? null,
-        // ]);
+        User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($password),
+            "phone" => $request->phone,
+            "role_id" => 2,
+            "attachment_ktp" => $data['ktp'] ?? null,
+            "attachment_npwp" => $data['npwp'] ?? null,
+            "attachment_saving_book" => $data['saving_book'] ?? null,
+        ]);
 
         $usersales = User::where('role_id', 2)->latest()->first('id');
         
         $link = route('customer.show', $usersales->id);
-        // userSales::create([
-        //     'user_id' => $usersales->id,
-        //     'link' => $link,
-        // ]);
+        userSales::create([
+            'user_id' => $usersales->id,
+            'link' => $link,
+        ]);
         // dd($password, $request->email);
         if ($request->link == 'wa') {
             return Redirect::to('https://wa.me/+6281310319488?text=HALLO%20BGB%20BERIKUT%20EMAIL%20DAN%20PASSWORD%20ANDA.%20%20%20%20%20%20E-MAIL%20:'. $request->email .'%20dan%20password%20:%20'. $password);

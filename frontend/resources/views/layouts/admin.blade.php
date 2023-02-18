@@ -40,9 +40,11 @@
                 alt=""
                 class="rounded-circle mr-2 profile-picture w-75"
               />
-              <p class="mt-4" style="font-size: 14px">
-                Hi, {{ Auth::user()->name }}
-              </p>
+              <a href="{{ route('profile.edit', Auth::id())}}">
+                <p class="mt-4" style="font-size: 14px">
+                  Hi, {{ Auth::user()->name }}
+                </p>
+              </a>
             </a>
           </div>
           <div class="list-group list-group-flush">
@@ -114,7 +116,7 @@
     </div>
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="{{ url('/js/alert.min.js')}}"></script>
 
     <script type="text/javascript" src="{{ url('js/datatables.min.js')}}"></script>   
     <script src="{{url('/vendor/jquery/jquery.min.js')}}"></script>

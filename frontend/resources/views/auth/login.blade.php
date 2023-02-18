@@ -1,9 +1,16 @@
 @extends('layouts.app')
-
 @section('content')
+
+<style>
+    @media only screen and (max-width : 400px){
+        .login{
+            display: none;
+        }
+    }
+</style>
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 login">
             <img src="{{ url('/img/login.png')}}">
         </div>
         <div class="col-md-6">
@@ -11,7 +18,7 @@
 
                 <div class="card-body text-center">
                     <div class="row mb-3">
-                        <div class="col-md-6 mx-auto">
+                        <div class="col-md-6 col-sm-12 text-center mx-auto">
                             <img class="img-responsive text-center" src="{{ url('img/logo.png')}}">
                         </div>
                     </div>

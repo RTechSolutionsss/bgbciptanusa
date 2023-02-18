@@ -50,7 +50,7 @@
                                                 <a title="Detail" class="mx-1 w-50 open_model" id="edit-customer" data-toggle="modal" data-id="{{ $customer->id }}">
                                                     <img class="img-responsive" src="{{ url('/img/eye.png')}}" >
                                                 </a>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Details</button>
+                                                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Details</button> --}}
                                             </td>
                                         </tr>
                                         @empty
@@ -95,6 +95,8 @@
                 </div>
             </div>
         </div>
+        <form action="{{ route('updatetracking')}}" method="POST">
+            @csrf
       <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
         <thead>
             <tr>
@@ -106,46 +108,19 @@
             </tr>
         </thead>
         <tbody id="dataurl">
-            {{-- <tr>
-                <td>1</td>
-                <td>Open Link BGB</td>
-                <td>257.283.0.12</td>
-                <td>{{ Carbon\Carbon::now()->format('d-M-Y')}}</td>
-                <td>
-                    @if(Auth::user()->role_id == 1)
-                    <select class="form-control myselect" id="mySelect" onchange="onSelectChange()">
-                        <option value="ON PROGRESS">ON PROGRESS</option>
-                        <option value="COMPLETED" class="text-white bg-success">COMPLETED</option>
-                        <option value="REJECT" class="text-white bg-danger">REJECT</option>
-                    </select>
-                    @else
-                        <p id="status">Success</p>
-                    @endif
-                </td>
-            </tr> --}}
         </tbody>
     </table>
     </div>
     @if(Auth::user()->role_id == 1)
     <div class="modal-footer">
-      <button type="button" class="btn btn-warning">Updated</button>
+      <button type="submit" class="btn btn-warning">Updated</button>
     </div>
     @endif
+</form>
   </div>
 </div>
 </div>
 <script>
-
-        function onSelectChange(){
-            if (document.getElementById('mySelect').value == "COMPLETED"){
-                document.getElementById('mySelect').className = 'form-control text-white bg-success';
-                document.getElementById('mySelect').className = 'text-success';
-            } else if(document.getElementById('mySelect').value == "REJECT") {
-                document.getElementById('mySelect').className = 'form-control text-white bg-danger'
-            }else{
-                document.getElementById('mySelect').className = 'form-control'
-            }
-        }
     $(document).ready(function () {
         $('#crudTable').DataTable({
             dom: 'Bfrtip',
@@ -173,13 +148,10 @@
 
         $('body').on('click', '#edit-customer', function () {
                 var user_id = $(this).data('id');
-                $.get('/task/'+user_id, function (data) {
-                        $('#crud-modal').modal('show');
-                        $('#bgb_id').val(data.id);
-                        $('#namecustomer').html(data[0].user.name);
-                        for (let i = 0; i < data.length; ++i) {
-                            $('#dataurl').append('<tr><td>'+i+'</td><td>'+data[i].name+'</td><td>'+data[i].ip_address+'</td><td>'+data[i].created_at+'</td><td>'+data[i].status+'</td></tr>')
-                        }
+                $('#crud-modal').modal('show');
+                $('#dataurl').load('/task/'+user_id);
+                $.get('/taskcustomer/'+user_id, function (data) {
+                        $('#namecustomer').html(data.name);
                     })
             });
     });
