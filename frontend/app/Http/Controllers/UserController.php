@@ -34,8 +34,8 @@ class UserController extends Controller
 
     public function show($id)
     {
-        //
-    
+        $users = User::all();
+        return view('pages.users.index',compact('users'));
     }
 
     public function store(Request $request)
@@ -58,7 +58,7 @@ class UserController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         $password = $randomString;
-        User::create([
+        $userResult =  User::create([
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($password),
@@ -68,7 +68,7 @@ class UserController extends Controller
             "attachment_npwp" => $data['npwp'] ?? null,
             "attachment_saving_book" => $data['saving_book'] ?? null,
         ]);
-
+       
         $usersales = User::where('role_id', 2)->latest()->first('id');
         
         $link = route('customer.show', $usersales->id);
@@ -80,7 +80,8 @@ class UserController extends Controller
         if ($request->link == 'wa') {
             return Redirect::to('https://wa.me/+6281310319488?text=HALLO%20BGB%20BERIKUT%20EMAIL%20DAN%20PASSWORD%20ANDA.%20%20%20%20%20%20E-MAIL%20:'. $request->email .'%20dan%20password%20:%20'. $password);
 
-        }elseif($request->link == 'email')
+        }
+        if($request->link == 'email')
         {
             $data = [
                 "name" => $request->name,

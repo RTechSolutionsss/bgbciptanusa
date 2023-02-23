@@ -31,4 +31,9 @@ class TrackingUrlTasksController extends Controller
         Alert::success('Success', 'Data Tracking Berhasil diperbarui');
         return back();
     }
+
+    public function store(Request $request)
+    {
+        
+    }
 }
