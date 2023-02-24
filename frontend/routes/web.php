@@ -9,8 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TrackingUrlTasksController;
-use App\Http\Controllers\UrlSalesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UrlSalesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
