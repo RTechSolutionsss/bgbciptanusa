@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container my-4">
-        <h1>{{ $product->name_product ?? "Rumah 1" }} - {{ $product->category->category }}</h1>
+        <p class="font-weight-bold h3">{{ $product->name_product ?? "Rumah 1" }} - {{ $product->category->category }}</p>
         <section class="store-new-products">
             <div class="container">
               <div class="row">
@@ -19,7 +19,7 @@
                     $incrementProduct = 0
                 @endphp
                 <div
-                  class="col-8 col-md-8 col-lg-8 shadow"
+                  class="col-md-8 col-sm-12 col-lg-8 shadow"
                   data-aos="fade-up"
                   data-aos-delay="{{ $incrementProduct += 100}}"
                 >

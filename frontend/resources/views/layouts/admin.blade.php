@@ -18,6 +18,14 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" />
  
     @stack('addon-style')
+    <style>
+      @media screen and (max-width: 990px) {
+        .sidebar{
+          display: none;
+        }
+      }
+      
+    </style>
   </head>
 
   <body>
@@ -26,7 +34,7 @@
     <div class="page-dashboard">
       <div class="d-flex" id="wrapper" data-aos="fade-right">
         <!-- sidebar -->
-        <div class="border-right" id="sidebar-wrapper">
+        <div class="border-right sidebar" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
             <a
               href=""
@@ -66,7 +74,7 @@
             <form action="{{ route('logout')}}" method="POST">
               @csrf
               <button class="list-group-item list-group-item-action">Sign Out</button>
-          </form>
+            </form>
           </div>
         </div>
         <!-- Page Content -->
@@ -76,12 +84,6 @@
           data-aos="fade-down"
         >
           <div class="container-fluid">
-            <button
-              class="btn btn-secondary d-md-none mr-auto mr-2"
-              id="menu-toggle"
-            >
-              &laquo; Menu
-            </button>
             <button
               class="navbar-toggler"
               type="button"
@@ -99,10 +101,33 @@
               <!-- mobile -->
               <ul class="navbar-nav d-block d-lg-none">
                 <li class="nav-item">
-                  <a href="#" class="nav-link"> Hi,Angga </a>
+                  <a href="{{ route('profile.edit', Auth::id())}}" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link d-inline-block"> Cart </a>
+                  <a href="{{ route('home')}}" class="nav-link d-inline-block"> Beranda </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="nav-link d-inline-block"> BGB </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('katalog.index')}}"
+                  class="nav-link d-inline-block {{ (request()->is("admin/category*")) ? 'active' : '' }}"> BGB </a>
+                </li>
+                <li class="nav-item">
+                  @if(Auth::user()->role_id == 1)
+                    <a
+                      href="{{ route('katalog.index')}}"
+                          class="nav-link d-inline-block {{ (request()->is("admin/category*")) ? 'active' : '' }}"
+                        >
+                          Katalog
+                    </a>
+                  @endif
+                </li>
+                <li class="nav-item">
+                  <form action="{{ route('logout')}}" method="POST">
+                    @csrf
+                    <button class="nav-link d-inline-block ">Sign Out</button>
+                  </form>
                 </li>
               </ul>
             </div>

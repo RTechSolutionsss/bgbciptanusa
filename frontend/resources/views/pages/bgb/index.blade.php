@@ -37,7 +37,11 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $user->name}}</td>
                                                 <td>{{ $user->phone}}</td>
-                                                <td>{{ $user->usersales->link ?? " "}}</td>
+                                                <td>
+                                                    <a class="mx-1 w-50 text-primary" data-toggle="modal" data-target="#view-link{{$user->id}}">
+                                                    {{ $user->usersales != null ? "View Link" : " "}}
+                                                    </a>
+                                                </td>
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
                                                 <td class="d-inline-flex justify-content-center">
                                                     <a title="Detail" class="mx-1 w-50"href="{{ route('url-sales.show', $user->id)}}">
@@ -45,6 +49,9 @@
                                                     </a>
                                                     <a title="Edit" class="mx-1 w-50 open_model" id="edit-customer" data-toggle="modal" data-id="{{ $user->id }}">
                                                         <img class="img-responsive" src="{{ url('/img/edit2.png')}}" >
+                                                    </a>
+                                                    <a class="mx-1 w-50">
+                                                        <img class="img-responsive" src="{{ url('/img/wa.png')}}" >
                                                     </a>
                                                     <form method="POST" action="{{ route('user.destroy', $user->id) }}">
                                                         @csrf
@@ -70,6 +77,37 @@
 @endsection
 
 @push('addon-script')
+@foreach ($users as $user)
+@if($user->usersales != null)
+<div class="modal fade" id="view-link{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Link </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <textarea readonly class="form-control"  id="text-copy{{ $user->id }}">
+                        {{ Illuminate\Support\Facades\Crypt::encrypt($user->usersales->link)}}
+                    </textarea>
+                </div>
+                <div class="col-12 text-right mt-2">
+                    <button class="btn btn-success p-1 text-white" onclick="copyText{{ $user->id }}()">
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+@endif
+@endforeach
+
 <div class="modal fade" id="crud-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
        <div class="modal-content">
@@ -226,6 +264,16 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script>
+    
+@foreach ($users as $user)
+@if($user->usersales != null)
+    function copyText{{ $user->id }}() {  
+        var copyText = document.getElementById("text-copy{{$user->id}}");  
+        copyText.select();  
+        document.execCommand("copy");
+    }
+    @endif
+    @endforeach
     $(document).ready(function () {
         $('#crudTable').DataTable({
                     scrollX: true,

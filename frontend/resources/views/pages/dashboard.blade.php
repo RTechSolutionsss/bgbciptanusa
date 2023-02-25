@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-    <div class="section-content section-dashboard-home" data-aos="fade-up">
+    <div class="section-content section-dashboard-home mt-md-5" data-aos="fade-up">
       <div class="container-fluid">
       <div class="dashboard-content">
         <div class="row">
@@ -18,26 +18,30 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-right">
-                            <h2>{{ Carbon\Carbon::now()->format('d-M-Y') }}</h2>
+                            <h2 class="">{{ Carbon\Carbon::now()->format('d-M-Y') }}</h2>
 
                             @if(Auth::user()->role_id == 1)
                             <form action="{{ route('home')}}" method="GET">
                                 @csrf
-                                <div class="d-flex">
-                                    <div class="form-group mx-2">
-                                        <input type="text" id="startdate" class="form-control" placeholder="Start Date">
+                                <div class="d-lg-flex row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group mx-2">
+                                            <input type="text" id="startdate" class="form-control" placeholder="Start Date">
+                                        </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group mx-2">
                                         <input type="text" id="enddate" class="form-control" placeholder="End Date">
                                     </div>
                                     <button class="btn btn-success p-2" style="height: 2.4rem">Search</button>
+                                    </div>
                                 </div>
                                
                             </form>
                             @endif
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card rounded m-3 p2">
                                     <div class="card-header">
                                         <p>{{ Auth::user()->role_id == 1 ? 'Data Baru' : 'Open LInk'}}</p>
@@ -46,11 +50,11 @@
                                     @php($datacustomer = $user->where('role_id', 3)->count())
                                     <div class="card-body text-right">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <h4>Customer</h4>
                                                 <p>{{ $datacustomer }}</p>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <h4>BGB</h4>
                                                 <p>{{ $databgb }}</p>
                                             </div>
@@ -58,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card rounded m-3 p2">
                                     @php($closesp = $tracking->where('name', 'Pembuatan SP/Closing')->where('status', 'COMPLETED')->count())
                                     <div class="card-header">
@@ -71,7 +75,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card rounded m-3 p2">
                                     @php($ppjb = $tracking->where('name', 'PPJB')->where('status', 'COMPLETED')->count())
                                     <div class="card-header">
@@ -82,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="card rounded m-3 p2">
                                     @php($dana = $tracking->where('name', 'Pencairan Dana')->where('status', 'COMPLETED')->count())
                                     <div class="card-header">
