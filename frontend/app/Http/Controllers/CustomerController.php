@@ -12,6 +12,7 @@ use App\Models\UserSales;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Alert;
+use Illuminate\Support\Facades\Crypt;
 
 
 class CustomerController extends Controller
@@ -52,6 +53,10 @@ class CustomerController extends Controller
         $user->email = $request->email;
         $user->save();
         UserCustomer::create([
+            'address' => $request->address,
+            'city' => $request->city,
+            'no_ktp' => $request->no_ktp,
+            'tgl_lahir' => $request->tgl_lahir,
             'user_id' => $user->id,
             'category_id' => $request->category_id,
             'age' => $request->usia,
@@ -71,6 +76,13 @@ class CustomerController extends Controller
      */
     public function show(Request $request, $id)
     {
+        try {
+            $decrypted = Crypt::decrypt($id);;
+        } catch (DecryptException $e) {
+            $e->getMessage();
+            info("Error....!!");
+        }
+
         $katalog = catalogs::with('product')->get();
         $length = 8;
         $lengths = 3;
@@ -108,7 +120,11 @@ class CustomerController extends Controller
                 "Pencairan Dana"
             ];
             for ($i=0; $i < count($trackingname); $i++) { 
-                trackingUrlTasks::create([
+                trackingUrlTasks::updateOrCreate(
+                [
+                    'ip_address' => $request->ip(),
+                ], 
+                [
                     'name' => $trackingname[$i],
                     'user_id' => $usercustomer->id,
                     'ip_address' => $request->ip(),

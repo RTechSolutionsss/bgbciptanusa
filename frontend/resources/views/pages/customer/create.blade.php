@@ -68,6 +68,30 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label for="">Tanggal Lahir</label>
+                                        <input class="form-control" name="tgl_lahir" type="date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">No Ktp</label>
+                                        <input class="form-control" name="no_ktp" type="number">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">City</label>
+                                        <input class="form-control" name="city" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">Address</label>
+                                        <textarea class="form-control" name="address" type="text"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label for="">Pekerjaan</label>
                                         <input class="form-control" name="pekerjaan">
                                     </div>

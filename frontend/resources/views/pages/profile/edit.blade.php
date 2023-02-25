@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    User | BGB SYSTEM
+    Profile
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@
                                     <div class="col-lg-6 col-md-12 col-sm-12 my-2">
                                         <div class="form-gorup">
                                             <label for="confirmpassword">Confirm Password</label>
-                                            <input class="form-control" type="passsword" id="confirmpassword" name="confirmpassword"> 
+                                            <input class="form-control" type="password" id="confirmpassword" name="confirmpassword"> 
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 my-2">

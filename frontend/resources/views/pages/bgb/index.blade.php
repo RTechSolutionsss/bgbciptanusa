@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    User | BGB SYSTEM
+     | BGB DATA
 @endsection
 
 @section('content')
@@ -25,9 +25,18 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>No Telpon</th>
+                                            @if(in_array(Auth::user()->role_id , [1,2]))
                                             <th>Link</th>
+                                            @endif
+                                            <th>Address</th>
+                                            <th>City</th>
+                                            <th>Nomor KTP</th>
+                                            <th>Notes</th>
+                                            <th>Birth Date</th>
+                                            @if(in_array(Auth::user()->role_id , [1,2]))
                                             <th>Status</th>
                                             <th>Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,11 +46,19 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $user->name}}</td>
                                                 <td>{{ $user->phone}}</td>
+                                                @if(in_array(Auth::user()->role_id , [1,2]))
                                                 <td>
                                                     <a class="mx-1 w-50 text-primary" data-toggle="modal" data-target="#view-link{{$user->id}}">
                                                     {{ $user->usersales != null ? "View Link" : " "}}
                                                     </a>
                                                 </td>
+                                                @endif
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                @if(in_array(Auth::user()->role_id , [1,2]))
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
                                                 <td class="d-inline-flex justify-content-center">
                                                     <a title="Detail" class="mx-1 w-50"href="{{ route('url-sales.show', $user->id)}}">
@@ -50,7 +67,7 @@
                                                     <a title="Edit" class="mx-1 w-50 open_model" id="edit-customer" data-toggle="modal" data-id="{{ $user->id }}">
                                                         <img class="img-responsive" src="{{ url('/img/edit2.png')}}" >
                                                     </a>
-                                                    <a class="mx-1 w-50">
+                                                    <a href="{{ route('sendwa',$user->id)}}" class="mx-1 w-50">
                                                         <img class="img-responsive" src="{{ url('/img/wa.png')}}" >
                                                     </a>
                                                     <form method="POST" action="{{ route('user.destroy', $user->id) }}">
@@ -61,6 +78,7 @@
                                                         </a>
                                                     </form>
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         
@@ -92,7 +110,7 @@
             <div class="row">
                 <div class="col-12">
                     <textarea readonly class="form-control"  id="text-copy{{ $user->id }}">
-                        {{ Illuminate\Support\Facades\Crypt::encrypt($user->usersales->link)}}
+                        {{ route('customer.show', Illuminate\Support\Facades\Crypt::encrypt($user->usersales->link))}}
                     </textarea>
                 </div>
                 <div class="col-12 text-right mt-2">
@@ -143,9 +161,15 @@
                 <div class="col-lg-6">
                     <div class="form-group error">
                         <label for="inputName">Phone</label>
-                        <input type="number" class="form-control has-error" id="phone" name="phone" value="">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+62</div>
+                            </div>
+                            <input class="form-control" name="phone" id="phone" type="number">
+                        </div>
                     </div>
                 </div>
+                @if(Auth::user()->role_id == 1)
                 <div class="col-lg-6">
                     <div class="form-group error">
                         <label for="inputName">ROLES</label>
@@ -157,6 +181,7 @@
                         </select>
                     </div>
                 </div>
+                @endif
                 <div class="col-lg-6">
                     <div class="form-group error">
                         <label for="inputName">KTP</label>
@@ -209,16 +234,6 @@
                     <input type="email" name="email" class="form-control">
                 </div>
             </div>
-
-            {{-- <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label for="">Link BGB</label>
-                    <select name="link" class="form-control">
-                        <option value="Grahayana">Grahayana</option>
-                        <option value="KGV3">KGV3</option>
-                    </select>
-                </div>
-            </div> --}}
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Send To</label>
@@ -231,7 +246,12 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Nomor Hp</label>
-                    <input type="number" name="phone" class="form-control">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">+62</div>
+                        </div>
+                        <input class="form-control" name="phone" type="number">
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">

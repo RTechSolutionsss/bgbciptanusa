@@ -9,7 +9,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>@yield('title')</title>
+    <title>{{ config('app.name', 'BGB SYSTEM') }} @yield('title')</title>
 
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />

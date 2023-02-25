@@ -32,7 +32,7 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'attachment_ktp', 'attachment_npwp', 'attachment_saving_book', 'role_id', 'parent_id'  
+        'name', 'email', 'password', 'phone', 'attachment_ktp', 'attachment_npwp', 'attachment_saving_book', 'role_id', 'parent_id','first_password'
     ];
 
     /**

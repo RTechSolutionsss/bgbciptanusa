@@ -47,6 +47,7 @@ class SendMail extends Mailable
     public function content()
     {
         return new Content(
+            subject: 'Akun baru program BGB Citanusa Group',
             view: 'mail.templateuser',
         );
     }

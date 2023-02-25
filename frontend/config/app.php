@@ -198,6 +198,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        MarvinLabs\DiscordLogger\ServiceProvider::class
 
     ],
 
