@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Hash;
 use Alert;
 use Illuminate\Support\Str;
 
@@ -97,6 +98,8 @@ class ProfileController extends Controller
 
        if ($request->password == null) {
             $data['password'] = $user->password;
+       }else{
+        $data['password'] = Hash::make($request->password);
        }
        $user->update($data);
        

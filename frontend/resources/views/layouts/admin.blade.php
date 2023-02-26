@@ -104,14 +104,14 @@
                   <a href="{{ route('profile.edit', Auth::id())}}" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('home')}}" class="nav-link d-inline-block"> Beranda </a>
+                  <a href="{{ route('home')}}" class="nav-link d-inline-block {{ (request()->is("pages/dashboard")) ? 'active' : '' }}"> Beranda </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="nav-link d-inline-block"> BGB </a>
+                  <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="nav-link d-inline-block {{ (request()->is("admin/bgb")) ? 'active' : '' }}"> BGB </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('katalog.index')}}"
-                  class="nav-link d-inline-block {{ (request()->is("admin/category*")) ? 'active' : '' }}"> BGB </a>
+                  class="nav-link d-inline-block {{ (request()->is("admin/katalog")) ? 'active' : '' }}"> BGB </a>
                 </li>
                 <li class="nav-item">
                   @if(Auth::user()->role_id == 1)
