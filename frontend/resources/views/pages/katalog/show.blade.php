@@ -19,6 +19,11 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Image</button>
                         </div>
                     <div class="table-responsive">
+                        @if ($errors->has('image'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('image') }}</strong>
+                            </span>
+                        @endif 
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                             <thead>
                                 <tr>

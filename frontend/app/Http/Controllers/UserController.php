@@ -40,6 +40,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'ktp' => 'max:1024|mimes:jpg,png',
+            'npwp' => 'max:1024|mimes:jpg,png',
+            'saving_book' => 'max:1024|mimes:jpg,png',
+        ]);
         $data = $request->all();
         if ($request->ktp != null) {
             $data['ktp'] = $request->file('ktp')->store('assets/ktp/'. Auth::id() ,'public'); 

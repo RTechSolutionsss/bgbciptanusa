@@ -19,6 +19,12 @@
                                 @endif
                             </div>
                             <div class="table-responsive">
+                                
+                                @if($errors->has())
+                                    @foreach ($errors->all() as $error)
+                                        <div>{{ $error }}</div>
+                                    @endforeach
+                                @endif
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
