@@ -23,5 +23,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('addon-script')
 </body>
 </html>
