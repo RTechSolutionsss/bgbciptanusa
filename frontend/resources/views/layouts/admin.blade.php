@@ -58,15 +58,15 @@
           <div class="list-group list-group-flush">
             <a
               href="{{ route('home')}}"
-              class="list-group-item list-group-item-action"
+              class="list-group-item list-group-item-action {{ (request()->is('dashboard') ? 'active' : '')}}"
             >
               Beranda
             </a>  
-            <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="list-group-item list-group-item-action">BGB</a>            
+            <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="list-group-item list-group-item-action {{ (request()->is('url-sales') ? 'active' : '')}}">BGB</a>            
             @if(Auth::user()->role_id == 1)
             <a
               href="{{ route('katalog.index')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is("admin/category*")) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action {{ (request()->is('katalog') ? 'active' : '')}}"
                 >
                   Katalog
             </a>
@@ -104,20 +104,16 @@
                   <a href="{{ route('profile.edit', Auth::id())}}" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('home')}}" class="nav-link d-inline-block {{ (request()->is("pages/dashboard")) ? 'active' : '' }}"> Beranda </a>
+                  <a href="{{ route('home')}}" class="nav-link d-inline-block {{ (request()->is('dashboard') ? 'active' : '')  }}"> Beranda </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="nav-link d-inline-block {{ (request()->is("admin/bgb")) ? 'active' : '' }}"> BGB </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('katalog.index')}}"
-                  class="nav-link d-inline-block {{ (request()->is("admin/katalog")) ? 'active' : '' }}"> BGB </a>
+                  <a href="{{in_array(Auth()->user()->role_id , [1,4]) ? route('url-sales.index') : route('url-sales.show', Auth::id())}}" class="nav-link d-inline-block {{ (request()->is("url-sales")) ? 'active' : '' }}"> BGB </a>
                 </li>
                 <li class="nav-item">
                   @if(Auth::user()->role_id == 1)
                     <a
                       href="{{ route('katalog.index')}}"
-                          class="nav-link d-inline-block {{ (request()->is("admin/category*")) ? 'active' : '' }}"
+                          class="nav-link d-inline-block {{ (request()->is("katalog")) ? 'active' : '' }}"
                         >
                           Katalog
                     </a>
