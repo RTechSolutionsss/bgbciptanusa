@@ -71,9 +71,10 @@ class UserSalesController extends Controller
     }
 
     public function Edit(Request $request)
-    {
+    {   
         $data =  $request->all();
         $user = User::findOrFail($data['id']);
+        $data['password'] = Hash::make($request->password);
         $user->update($data);
         Alert::success('Success', 'Data User Berhasil di updated');
         return back();
