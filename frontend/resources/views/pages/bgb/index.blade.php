@@ -314,17 +314,20 @@
     @endforeach
     $(document).ready(function () {
         $('#crudTable').DataTable({
-                    scrollX: true,
-                    scrollY: "500px",
-                    autoWidth : true,
-                    scrollCollapse: true,
-                    responsive: true,
-                    previous: "<i class='mdi mdi-chevron-left'>",
-                    next: "<i class='mdi mdi-chevron-right'>",
-                    drawCallback: function drawCallback() {
-                        $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-                    },
-                });
+            buttons: [
+                'excel'
+            ],
+                scrollX: true,
+                scrollY: "500px",
+                autoWidth : true,
+                scrollCollapse: true,
+                responsive: true,
+                previous: "<i class='mdi mdi-chevron-left'>",
+                next: "<i class='mdi mdi-chevron-right'>",
+                drawCallback: function drawCallback() {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                },
+            });
 
         /* When click New customer button */
         $('#new-customer').click(function () {

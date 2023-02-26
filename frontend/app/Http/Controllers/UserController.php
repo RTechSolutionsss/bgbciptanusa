@@ -95,9 +95,10 @@ class UserController extends Controller
 
             Alert::success('Success', 'Data User Berhasil di buat dengan E-mail');
             return back();
+        }else{
+            Alert::success('Success', 'Data User Berhasil di buat dengan Whatsapp');
+            return back();
         }
-
-        dd($password);
     }
 
     public function edit($id)
