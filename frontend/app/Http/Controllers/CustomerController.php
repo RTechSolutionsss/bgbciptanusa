@@ -77,12 +77,12 @@ class CustomerController extends Controller
     public function show(Request $request, $id)
     {
         try {
-            $decrypted = Crypt::decrypt($id);;
+            $decrypted = Crypt::decrypt($id);
         } catch (DecryptException $e) {
             $e->getMessage();
             info("Error....!!");
         }
-        dd($id);
+        dd($decrypted);
 
         $katalog = catalogs::with('product')->get();
         $length = 8;
@@ -109,7 +109,7 @@ class CustomerController extends Controller
                 'email' => $email,
                 'password' => Hash::make($password),
                 'role_id' => 3,
-                'parent_id' => $id,
+                'parent_id' => $decrypted,
             ]);
             
             $usercustomer = User::where('role_id', 3)->latest()->first('id');
@@ -132,7 +132,7 @@ class CustomerController extends Controller
                     'status_changed_at' => Carbon::now(),
                 ]);
             }
-            $usercustomer->parent_id = $id;
+            $usercustomer->parent_id = $decrypted;
             $usercustomer->save();
         }
 
