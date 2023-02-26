@@ -20,7 +20,7 @@
                             </div>
                             <div class="table-responsive">
                                 
-                                @if($errors->has())
+                                @if ($errors->count())
                                     @foreach ($errors->all() as $error)
                                         <div>{{ $error }}</div>
                                     @endforeach
