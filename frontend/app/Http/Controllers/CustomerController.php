@@ -82,6 +82,7 @@ class CustomerController extends Controller
             $e->getMessage();
             info("Error....!!");
         }
+        dd($id);
 
         $katalog = catalogs::with('product')->get();
         $length = 8;
