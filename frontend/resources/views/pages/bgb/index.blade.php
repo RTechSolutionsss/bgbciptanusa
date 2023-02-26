@@ -166,6 +166,18 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group error">
+                        <label for="password">Password</label>
+                        <input type="password" readonly class="form-control has-error" id="password" name="password">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group error">
+                        <label for="repassword">Confirm Password</label>
+                        <input type="password" readonly class="form-control has-error" id="repassword" name="repassword">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group error">
                         <label for="inputName">Phone</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
