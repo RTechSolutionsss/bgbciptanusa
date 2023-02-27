@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         // DB::statement("SET NAMES utf8mb4;
-
         // INSERT INTO users (name, email, email_verified_at, password, two_factor_secret, two_factor_recovery_codes, two_factor_confirmed_at,remember_token,current_team_id,profile_photo_path,created_at,updated_at,phone,attachment_ktp,attachment_npwp,attachment_saving_book,role_id,parent_id,deleted_at) VALUES
         // (1,'Kurnia Mulyarizqi','kurniamulyarizqi1006@gmail.com',NULL,'$2y$10$jqKueSxbH3n258xmwIRoeOKAaogYZR8A3XhgRmfD6EqJh6sFhSs06',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'2023-02-08 05:05:22',	'2023-02-12 04:51:20',	'089654112054',	NULL,	NULL,	NULL,	1,	0,	NULL),
         // (2,'Tejo','tejo@gmail.com',NULL,'$2y$10$jqKueSxbH3n258xmwIRoeOKAaogYZR8A3XhgRmfD6EqJh6sFhSs06',	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'2023-02-08 05:28:06','2023-02-12 04:09:55',NULL,NULL,NULL,NULL,2,0,NULL),
@@ -30,7 +29,7 @@ return new class extends Migration
         // ) VALUES
         // (1,	4, '1',25,'arsitek','whatsapp',NOW(), NOW(), 'customer@email.com', 500000000, 'ON_PROGRESS', NULL )");
 
-      
+        DB::statement("INSERT INTO user_role (role_name, created_at) VALUES ('Marketing Communicator',NOW())");
     }
 
     /**
