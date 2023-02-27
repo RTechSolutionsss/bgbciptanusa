@@ -39,9 +39,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table('user_customer', function (Blueprint $table) {
-            $table->dropColumn("email");
-            $table->dropColumn("name");
-            $table->dropColumn("phone");
             $table->dropColumn("price");
             $table->dropColumn('status');
             $table->dropColumn("deleted_at");
