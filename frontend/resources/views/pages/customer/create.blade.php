@@ -31,7 +31,6 @@
                             ></div>
                         </div>
                         <div class="products-text">{{ $product->name_product ?? "Rumah 1" }}</div>
-                        <div class="products-price">{{ $product->price ?? "0" }}</div>
                         <p>{{ $product->description ?? "Rumah bagus" }}</p>
                         <form action="{{ route('customer.store')}}" method="POST">
                             @csrf

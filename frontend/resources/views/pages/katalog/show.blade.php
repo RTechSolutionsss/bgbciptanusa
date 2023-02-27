@@ -140,12 +140,6 @@
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <textarea class="form-control" id="price" name="description"></textarea>
-                </div>
-            </div>
         </div>
         <button type="submit" class="btn btn-primary">Save changes</button>
       </form>

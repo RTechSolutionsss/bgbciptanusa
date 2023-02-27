@@ -300,7 +300,6 @@
   </div>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script>
     
 @foreach ($users as $user)
@@ -314,9 +313,6 @@
     @endforeach
     $(document).ready(function () {
         $('#crudTable').DataTable({
-            buttons: [
-                'excel'
-            ],
                 scrollX: true,
                 scrollY: "500px",
                 autoWidth : true,

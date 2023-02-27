@@ -33,7 +33,6 @@
                       ></div>
                     </div>
                     <div class="products-text">{{ $product->name_product ?? "Rumah 1" }}</div>
-                    <div class="products-price">{{ $product->price ?? "0" }}</div>
                   </a>
                 </div> 
               @endforeach
