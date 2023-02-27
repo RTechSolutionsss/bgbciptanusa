@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container my-4">
-        <h1>{{ $product->name_product ?? "Rumah 1" }} - {{ $product->category->category }}</h1>
+        <p class="font-weight-bold h3">{{ $product->name_product ?? "Rumah 1" }} - {{ $product->category->category }}</p>
         <section class="store-new-products">
             <div class="container">
               <div class="row">
@@ -19,7 +19,7 @@
                     $incrementProduct = 0
                 @endphp
                 <div
-                  class="col-8 col-md-8 col-lg-8 shadow"
+                  class="col-md-8 col-sm-12 col-lg-8 shadow"
                   data-aos="fade-up"
                   data-aos-delay="{{ $incrementProduct += 100}}"
                 >
@@ -64,6 +64,30 @@
                                     <div class="form-group">
                                         <label for="">Usia</label>
                                         <input class="form-control" name="usia" type="number">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">Tanggal Lahir</label>
+                                        <input class="form-control" name="tgl_lahir" type="date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">No Ktp</label>
+                                        <input class="form-control" name="no_ktp" type="number">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">City</label>
+                                        <input class="form-control" name="city" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="">Address</label>
+                                        <textarea class="form-control" name="address" type="text"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

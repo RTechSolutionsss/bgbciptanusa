@@ -48,12 +48,12 @@ Route::middleware([
     Route::get('task/{id}', [TrackingUrlTasksController::class, 'task'])->name('task');
     Route::get('taskcustomer/{id}', [TrackingUrlTasksController::class, 'taskcustomer'])->name('taskcustomer');
     Route::post('taskupdate', [TrackingUrlTasksController::class, 'update'])->name('updatetracking');
+    Route::get('/sendwa/{id}', [UserSalesController::class, 'sendwa'])->name('sendwa');
     Route::resource('logactivity', LogActivityController::class);
     Route::resource('katalog', KatalogController::class);
     Route::resource('user', UserController::class);
     Route::resource('url-sales', UrlSalesController::class);
     Route::resource('product', ProductController::class);
-    Route::resource('profile', ProfileController::class);
     Route::resource('profile', ProfileController::class);
 });
 

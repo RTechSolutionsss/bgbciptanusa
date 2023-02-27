@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    User | BGB SYSTEM
+     | BGB DATA
 @endsection
 
 @section('content')
@@ -19,15 +19,30 @@
                                 @endif
                             </div>
                             <div class="table-responsive">
+                                
+                                @if ($errors->count())
+                                    @foreach ($errors->all() as $error)
+                                        <div>{{ $error }}</div>
+                                    @endforeach
+                                @endif
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>No Telpon</th>
+                                            @if(in_array(Auth::user()->role_id , [1,2]))
                                             <th>Link</th>
+                                            @endif
+                                            <th>Address</th>
+                                            <th>City</th>
+                                            <th>Nomor KTP</th>
+                                            <th>Notes</th>
+                                            <th>Birth Date</th>
+                                            @if(in_array(Auth::user()->role_id , [1,2]))
                                             <th>Status</th>
                                             <th>Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,7 +52,19 @@
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $user->name}}</td>
                                                 <td>{{ $user->phone}}</td>
-                                                <td>{{ $user->usersales->link ?? " "}}</td>
+                                                @if(in_array(Auth::user()->role_id , [1,2]))
+                                                <td>
+                                                    <a class="mx-1 w-50 text-primary" data-toggle="modal" data-target="#view-link{{$user->id}}">
+                                                    {{ $user->usersales != null ? "View Link" : " "}}
+                                                    </a>
+                                                </td>
+                                                @endif
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                @if(in_array(Auth::user()->role_id , [1,2]))
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
                                                 <td class="d-inline-flex justify-content-center">
                                                     <a title="Detail" class="mx-1 w-50"href="{{ route('url-sales.show', $user->id)}}">
@@ -45,6 +72,9 @@
                                                     </a>
                                                     <a title="Edit" class="mx-1 w-50 open_model" id="edit-customer" data-toggle="modal" data-id="{{ $user->id }}">
                                                         <img class="img-responsive" src="{{ url('/img/edit2.png')}}" >
+                                                    </a>
+                                                    <a href="{{ route('sendwa',$user->id)}}" class="mx-1 w-50">
+                                                        <img class="img-responsive" src="{{ url('/img/wa.png')}}" >
                                                     </a>
                                                     <form method="POST" action="{{ route('user.destroy', $user->id) }}">
                                                         @csrf
@@ -54,6 +84,7 @@
                                                         </a>
                                                     </form>
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         
@@ -70,6 +101,37 @@
 @endsection
 
 @push('addon-script')
+@foreach ($users as $user)
+@if($user->usersales != null)
+<div class="modal fade" id="view-link{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Link </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <textarea readonly class="form-control"  id="text-copy{{ $user->id }}">
+                        {{ route('customer.show', Illuminate\Support\Facades\Crypt::encrypt($user->usersales->link))}}
+                    </textarea>
+                </div>
+                <div class="col-12 text-right mt-2">
+                    <button class="btn btn-success p-1 text-white" onclick="copyText{{ $user->id }}()">
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+@endif
+@endforeach
+
 <div class="modal fade" id="crud-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
        <div class="modal-content">
@@ -104,10 +166,28 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group error">
-                        <label for="inputName">Phone</label>
-                        <input type="number" class="form-control has-error" id="phone" name="phone" value="">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control has-error" id="password" name="password">
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="form-group error">
+                        <label for="repassword">Confirm Password</label>
+                        <input type="password" class="form-control has-error" id="repassword" name="repassword">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group error">
+                        <label for="inputName">Phone</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+62</div>
+                            </div>
+                            <input class="form-control" name="phone" id="phone" type="number">
+                        </div>
+                    </div>
+                </div>
+                @if(Auth::user()->role_id == 1)
                 <div class="col-lg-6">
                     <div class="form-group error">
                         <label for="inputName">ROLES</label>
@@ -119,6 +199,7 @@
                         </select>
                     </div>
                 </div>
+                @endif
                 <div class="col-lg-6">
                     <div class="form-group error">
                         <label for="inputName">KTP</label>
@@ -171,16 +252,6 @@
                     <input type="email" name="email" class="form-control">
                 </div>
             </div>
-
-            {{-- <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <label for="">Link BGB</label>
-                    <select name="link" class="form-control">
-                        <option value="Grahayana">Grahayana</option>
-                        <option value="KGV3">KGV3</option>
-                    </select>
-                </div>
-            </div> --}}
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Send To</label>
@@ -193,7 +264,12 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Nomor Hp</label>
-                    <input type="number" name="phone" class="form-control">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">+62</div>
+                        </div>
+                        <input class="form-control" name="phone" type="number">
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -226,19 +302,32 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script>
+    
+@foreach ($users as $user)
+@if($user->usersales != null)
+    function copyText{{ $user->id }}() {  
+        var copyText = document.getElementById("text-copy{{$user->id}}");  
+        copyText.select();  
+        document.execCommand("copy");
+    }
+    @endif
+    @endforeach
     $(document).ready(function () {
         $('#crudTable').DataTable({
-                    scrollX: true,
-                    scrollY: "500px",
-                    autoWidth : true,
-                    scrollCollapse: true,
-                    responsive: true,
-                    previous: "<i class='mdi mdi-chevron-left'>",
-                    next: "<i class='mdi mdi-chevron-right'>",
-                    drawCallback: function drawCallback() {
-                        $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-                    },
-                });
+            buttons: [
+                'excel'
+            ],
+                scrollX: true,
+                scrollY: "500px",
+                autoWidth : true,
+                scrollCollapse: true,
+                responsive: true,
+                previous: "<i class='mdi mdi-chevron-left'>",
+                next: "<i class='mdi mdi-chevron-right'>",
+                drawCallback: function drawCallback() {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                },
+            });
 
         /* When click New customer button */
         $('#new-customer').click(function () {

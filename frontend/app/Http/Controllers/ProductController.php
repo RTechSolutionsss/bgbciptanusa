@@ -36,6 +36,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required|max:1024|mimes:jpg,png',
+        ]);
         $data = $request->all();
         $data['image'] = $request->file('image')->store('assets/product/'. $request->id_category ,'public');
         

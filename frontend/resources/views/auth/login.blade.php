@@ -1,4 +1,8 @@
 @extends('layouts.app')
+
+@section('title')
+    | Login
+@endsection
 @section('content')
 
 <style>
@@ -65,6 +69,11 @@
                                     <label class="px-2 sm:px-14 text-lg sm:mt-0" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
+
+                                    <input type="checkbox" id="show" class="form-check-input ml-8" onclick="myFunction()">
+                                    <label class="px-2 sm:px-14 text-lg sm:mt-0" for="show">
+                                        {{ __('Show Password') }}
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -89,3 +98,16 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+ <script>
+ function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+    }   
+ </script>   
+@endpush

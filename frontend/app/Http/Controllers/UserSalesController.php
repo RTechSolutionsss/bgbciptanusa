@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\UserRole;
 use App\Models\User;
 Use Alert;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+use Redirect;
 
 class UserSalesController extends Controller
 {
@@ -68,11 +71,20 @@ class UserSalesController extends Controller
     }
 
     public function Edit(Request $request)
-    {
+    {   
         $data =  $request->all();
         $user = User::findOrFail($data['id']);
+        $data['password'] = Hash::make($request->password);
         $user->update($data);
         Alert::success('Success', 'Data User Berhasil di updated');
         return back();
+    }
+
+    public function sendwa($id)
+    {
+        $user = User::with('usersales')->findOrFail($id);
+        $link = route('customer.show', Crypt::encrypt($user->usersales->link));
+        return Redirect::to('https://wa.me/+62'.$user->phone.'?text=Selamat%20Bergabung%20dalam%20Program%20BGB%A0Citanusa%20Group!%20%20%20%20%20Berikut%20link%20akun%20anda:'. $link .'%20%20%20%20%20%20%20ID:%20%20:'. $user->email .'%20%20%20%20%20password%20:%20'. $user->first_password . '%20%20%20%20%20%20%20%20%20Happy%20Selling!');
+
     }
 }

@@ -40,6 +40,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'ktp' => 'max:1024|mimes:jpg,png',
+            'npwp' => 'max:1024|mimes:jpg,png',
+            'saving_book' => 'max:1024|mimes:jpg,png',
+        ]);
         $data = $request->all();
         if ($request->ktp != null) {
             $data['ktp'] = $request->file('ktp')->store('assets/ktp/'. Auth::id() ,'public'); 
@@ -62,6 +67,7 @@ class UserController extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($password),
+            'first_password' => $password,
             "phone" => $request->phone,
             "role_id" => 2,
             "attachment_ktp" => $data['ktp'] ?? null,
@@ -71,32 +77,28 @@ class UserController extends Controller
        
         $usersales = User::where('role_id', 2)->latest()->first('id');
         
-        $link = route('customer.show', $usersales->id);
+        $link = $usersales->id;
         userSales::create([
             'user_id' => $usersales->id,
             'link' => $link,
         ]);
-        // dd($password, $request->email);
-        if ($request->link == 'wa') {
-            return Redirect::to('https://wa.me/+6281310319488?text=HALLO%20BGB%20BERIKUT%20EMAIL%20DAN%20PASSWORD%20ANDA.%20%20%20%20%20%20E-MAIL%20:'. $request->email .'%20dan%20password%20:%20'. $password);
-
-        }
         if($request->link == 'email')
         {
             $data = [
                 "name" => $request->name,
                 "email" => $request->email,
                 "password" => $password,
-                "link" => $link,
+                "link" => route('customer.show', Crypt::encrypt($link)),
             ];
 
             Mail::to($request->email)->send(new SendMail($data));
 
             Alert::success('Success', 'Data User Berhasil di buat dengan E-mail');
             return back();
+        }else{
+            Alert::success('Success', 'Data User Berhasil di buat dengan Whatsapp');
+            return back();
         }
-
-        dd($password);
     }
 
     public function edit($id)

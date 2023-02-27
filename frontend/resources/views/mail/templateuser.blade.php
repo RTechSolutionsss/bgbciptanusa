@@ -8,8 +8,18 @@
 </head>
 <body>
     <h3>Hallo Berikut E-mail dan Password</h3>
-    <p>E-mail : {{ $data['email'] }}</p>
+    <p>Dear Bapak/Ibu,</p>
+    <p>Selamat bergabung dalam Program BGB Citanusa Group!</p>
+    <br>
+    <p>Berikut informasi terkait akun anda </p>
+    <p>Link share BGB :  {{ $data['link'] }}</p>
+    <p>ID : {{ $data['email'] }}</p>
     <p>Password : {{ $data['password'] }}</p>
-    <p>Link : {{ $data['link'] }}</p>
+    <br>
+    <p>Anda dapat mengakses akun tersebut pada website www.programbgb.com
+        Happy Selling!</p>
+    <br>
+    <p>Terima Kasih,</p>
+    <p>Customer Care BGB</p>
 </body>
 </html>
