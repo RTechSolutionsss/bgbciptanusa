@@ -41,7 +41,7 @@ class ProductController extends Controller
         ]);
         $data = $request->all();
         $data['image'] = $request->file('image')->store('assets/product/'. $request->id_category ,'public');
-        
+        $data['price'] = 0;
         products::create($data);
 
         Alert::success('Success', 'Data Katalog Berhasil di input');
