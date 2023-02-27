@@ -38,8 +38,8 @@ return new class extends Migration
         });
         
         Schema::table('tracking_url_tasks', function (Blueprint $table) {
-            $table->enum('status',['SUCCESS', 'PENDING'])->default('PENDING');
-            $table->dateTime('status_changed_at');
+            // $table->enum('status',['SUCCESS', 'PENDING'])->default('PENDING');
+            $table->dropColumn('status_changed_at');
         });
     }
 };
