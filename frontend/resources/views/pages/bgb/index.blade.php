@@ -15,15 +15,20 @@
                             <div class="d-flex justify-content-between m-2">
                                 <h4>Data BGB</h4>
                                 @if(Auth::user()->role_id == 1)
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Data</button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Data</button>
+                                @elseif(Auth::user()->role_id == 4)
+                                    <a href="{{ route('export')}}" class="btn btn-dark">Export Data</a>
                                 @endif
                             </div>
                             <div class="table-responsive">
-                                
-                                @if ($errors->count())
-                                    @foreach ($errors->all() as $error)
-                                        <div>{{ $error }}</div>
-                                    @endforeach
+                                @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 @endif
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
@@ -59,17 +64,19 @@
                                                     </a>
                                                 </td>
                                                 @endif
+                                                <td>{{ $user->datacustomermarkom->address ?? " " }}</td>
+                                                <td>{{ $user->datacustomermarkom->city ?? " " }}</td>
+                                                <td>{{ $user->datacustomermarkom->no_ktp ?? " " }}</td>
                                                 <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{ $user->datacustomermarkom->tgl_lahir ?? " " }}</td>
                                                 @if(in_array(Auth::user()->role_id , [1,2]))
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
                                                 <td class="d-inline-flex justify-content-center">
-                                                    <a title="Detail" class="mx-1 w-50"href="{{ route('url-sales.show', $user->id)}}">
-                                                        <img class="img-responsive" src="{{ url('/img/eye.png')}}" >
-                                                    </a>
+                                                    @if ($user->role_id == 2)
+                                                        <a title="Detail" class="mx-1 w-50"href="{{ route('url-sales.show', $user->id)}}">
+                                                            <img class="img-responsive" src="{{ url('/img/eye.png')}}" >
+                                                        </a>
+                                                    @endif
                                                     <a title="Edit" class="mx-1 w-50 open_model" id="edit-customer" data-toggle="modal" data-id="{{ $user->id }}">
                                                         <img class="img-responsive" src="{{ url('/img/edit2.png')}}" >
                                                     </a>
@@ -156,12 +163,6 @@
                     <div class="form-group error">
                         <label for="inputName">E-mail</label>
                         <input type="text" class="form-control has-error" id="email" name="email" placeholder="E-mail" value="">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group error">
-                        <label for="inputName">Link</label>
-                        <input type="text" readonly class="form-control has-error" id="link" name="link" placeholder="Name" value="">
                     </div>
                 </div>
                 <div class="col-lg-6">

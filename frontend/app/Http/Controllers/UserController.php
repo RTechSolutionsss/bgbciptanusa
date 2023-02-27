@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Crypt;
 use App\Mail\SendMail;
 use Mail;
 
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -40,7 +42,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $this->validate($request,[
             'ktp' => 'max:1024|mimes:jpg,png',
             'npwp' => 'max:1024|mimes:jpg,png',
             'saving_book' => 'max:1024|mimes:jpg,png',
@@ -138,5 +140,11 @@ class UserController extends Controller
   
         Alert::success('Success', 'Data User Berhasil di hapus');
         return back();
+    }
+
+    public function export() 
+    {
+        Alert::success('Success', 'Data Berhasil di Export');
+        return Excel::download(new UsersExport, 'customerbgb.xlsx');
     }
 }

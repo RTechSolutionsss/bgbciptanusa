@@ -16,7 +16,7 @@ class UrlSalesController extends Controller
      */
     public function index()
     {
-        $users = User::with('usersales')->get();
+        $users = User::with('usersales','datacustomermarkom')->whereIn('role_id',[2,3,4])->get();
         $roles = UserRole::all();
         // return Inertia::render('urlsales');
         return view('pages.bgb.index', compact('users','roles'));

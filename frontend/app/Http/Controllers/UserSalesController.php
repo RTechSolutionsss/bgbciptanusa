@@ -72,7 +72,22 @@ class UserSalesController extends Controller
 
     public function Edit(Request $request)
     {   
+        $this->validate($request,[
+            'ktp' => 'max:1024|mimes:jpg,png',
+            'npwp' => 'max:1024|mimes:jpg,png',
+            'saving_book' => 'max:1024|mimes:jpg,png',
+        ]);
+        
         $data =  $request->all();
+        if ($request->ktp != null) {
+            $data['ktp'] = $request->file('ktp')->store('assets/ktp/'. Auth::id() ,'public'); 
+        }
+        if ($request->npwp != null) {
+            $data['npwp'] = $request->file('npwp')->store('assets/npwp/'. Auth::id() ,'public'); 
+        }
+        if ($request->saving_book != null) {
+            $data['saving_book'] = $request->file('saving_book')->store('assets/saving_book/'. Auth::id() ,'public'); 
+        }
         $user = User::findOrFail($data['id']);
         $data['password'] = Hash::make($request->password);
         $user->update($data);

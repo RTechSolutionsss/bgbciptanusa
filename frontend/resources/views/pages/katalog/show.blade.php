@@ -19,11 +19,15 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Tambah Image</button>
                         </div>
                     <div class="table-responsive">
-                        @if ($errors->has('image'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('image') }}</strong>
-                            </span>
-                        @endif 
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                             <thead>
                                 <tr>

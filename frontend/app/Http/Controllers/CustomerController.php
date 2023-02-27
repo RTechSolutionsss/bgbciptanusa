@@ -120,10 +120,7 @@ class CustomerController extends Controller
                 "Pencairan Dana"
             ];
             for ($i=0; $i < count($trackingname); $i++) { 
-                trackingUrlTasks::updateOrCreate(
-                [
-                    'ip_address' => $request->ip(),
-                ], 
+                trackingUrlTasks::Create(
                 [
                     'name' => $trackingname[$i],
                     'user_id' => $usercustomer->id,

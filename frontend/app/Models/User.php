@@ -85,6 +85,11 @@ class User extends Authenticatable
         return $this->hasMany(UserCustomer::class, 'user_id', 'id');
     }
 
+    public function datacustomermarkom()
+    {
+        return $this->hasOne(UserCustomer::class, 'user_id', 'id');
+    }
+
     public function usercustomer()
     {
         return $this->hasMany(User::class, 'parent_id', 'id');

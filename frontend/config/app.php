@@ -198,7 +198,8 @@ return [
         App\Providers\JetstreamServiceProvider::class,
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        MarvinLabs\DiscordLogger\ServiceProvider::class
+        MarvinLabs\DiscordLogger\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -216,6 +217,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];
