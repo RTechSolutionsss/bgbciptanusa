@@ -14,7 +14,7 @@ class products extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-       'id_category','name_product','description', 'image','created_by','updated_at'  
+       'id_category','name_product','description', 'image','created_by','updated_at','price'  
     ];
 
     public function category()

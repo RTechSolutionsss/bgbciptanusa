@@ -140,6 +140,7 @@
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
             </div>
+            <input hidden value="0" name="price">
         </div>
         <button type="submit" class="btn btn-primary">Save changes</button>
       </form>
