@@ -44,6 +44,8 @@
                                             <th>Nomor KTP</th>
                                             <th>Notes</th>
                                             <th>Birth Date</th>
+                                            <th>Notes</th>
+                                            <th>Category</th>
                                             @if(in_array(Auth::user()->role_id , [1,2]))
                                             <th>Status</th>
                                             <th>Action</th>
@@ -53,6 +55,7 @@
                                     <tbody>
                                         @php($no = 1)
                                         @foreach ($users as $user)
+                                        @php($katalog = App\Models\catalogs::where('id', $user->datacustomermarkom->id_category)->first())
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $user->name}}</td>
@@ -69,6 +72,8 @@
                                                 <td>{{ $user->datacustomermarkom->no_ktp ?? " " }}</td>
                                                 <td></td>
                                                 <td>{{ $user->datacustomermarkom->tgl_lahir ?? " " }}</td>
+                                                <td>{{ $user->datacustomermarkom->notes ?? " " }}</td>
+                                                <td>{{ $katalog->category ?? " " }}</td>
                                                 @if(in_array(Auth::user()->role_id , [1,2]))
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
                                                 <td class="d-inline-flex justify-content-center">

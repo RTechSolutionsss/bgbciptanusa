@@ -34,7 +34,8 @@
                         <p>{{ $product->description ?? "Rumah bagus" }}</p>
                         <form action="{{ route('customer.store')}}" method="POST">
                             @csrf
-                            <input type="text" hidden value="{{ $product->id }}" name="category_id">
+                            <input type="text" hidden value="{{ $product->id }}" name="product_id">
+                            <input type="text" hidden value="{{ $product->id_category }}" name="category_id">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">

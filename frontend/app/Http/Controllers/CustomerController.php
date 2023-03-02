@@ -61,6 +61,8 @@ class CustomerController extends Controller
             'category_id' => $request->category_id,
             'age' => $request->usia,
             'job' => $request->pekerjaan,
+            'notes' => 'BGB',
+            'product_id' => $request->product_id,
             'source_information' => $request->source_information,
         ]);
 
