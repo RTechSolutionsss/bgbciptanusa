@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Alert;
 use App\Models\products;
 
+use Redirect,Response;
+
 class ProductController extends Controller
 {
     /**
@@ -73,9 +75,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = products::findOrFail($id);
+        return view('pages.katalog.productedit',compact('product')); 
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -85,7 +87,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = products::findOrFail($id);
+        $data = $request->all();
+        if ($data['image'] != null) {
+            $data['image'] = $request->file('image')->store('assets/product/'. $product->id ,'public');
+        }
+        $product->update($data);
+        Alert::success('Success', 'Data User Berhasil di updated');
+        return Redirect::route('katalog.show', $product->id_category);
     }
 
     /**

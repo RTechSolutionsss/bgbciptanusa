@@ -56,6 +56,7 @@ Route::middleware([
     Route::resource('product', ProductController::class);
     Route::resource('profile', ProfileController::class);
     Route::get('users/export/', [UserController::class, 'export'])->name('export');
+    
 });
 
 Auth::routes();
