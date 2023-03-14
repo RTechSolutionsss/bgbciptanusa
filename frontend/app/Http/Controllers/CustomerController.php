@@ -24,7 +24,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $katalog = catalogs::with('product')->get();
+        $katalog = catalogs::with('product')->limit(3);
+        dd($katalog);
+        $catalog = catalogs::with('product')->get();
         return view('pages.customer.index', compact('katalog'));
     }
 
@@ -85,7 +87,8 @@ class CustomerController extends Controller
             info("Error....!!");
         }
 
-        $katalog = catalogs::with('product')->get();
+        $katalog = catalogs::with('product')->limit(3)->get();
+        $catalog = catalogs::with('product')->get();
         $length = 8;
         $lengths = 3;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -134,7 +137,7 @@ class CustomerController extends Controller
             $usercustomer->save();
         }
 
-        return view('pages.customer.index', compact('katalog'));
+        return view('pages.customer.index', compact('katalog','catalog'));
     }
 
     /**
@@ -145,8 +148,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $product = products::with('category')->findOrFail($id);
-        return view('pages.customer.create', compact('product'));
+        $katalog = catalogs::with('product')->findOrFail($id);
+        return view('pages.customer.create', compact('katalog'));
     }
 
     /**

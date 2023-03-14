@@ -55,7 +55,8 @@
                                     <tbody>
                                         @php($no = 1)
                                         @foreach ($users as $user)
-                                        @php($katalog = App\Models\catalogs::where('id', $user->datacustomermarkom->id_category)->first())
+                                        @if($user->name != 'Dummy')
+                                        @php($katalog = App\Models\catalogs::where('id', $user->datacustomermarkom->id_category ?? '')->first())
                                             <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $user->name}}</td>
@@ -98,6 +99,7 @@
                                                 </td>
                                                 @endif
                                             </tr>
+                                            @endif
                                         @endforeach
                                         
                                     </tbody>
