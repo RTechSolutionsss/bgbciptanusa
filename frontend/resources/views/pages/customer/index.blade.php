@@ -35,7 +35,7 @@
                   @foreach($katalog as $category)
                   @php($product = collect($category->product)->first())
                   @isset($product)
-                  <div class="carousel-item {{ $product->id == 2 ? 'active' : ''}}">
+                  <div class="carousel-item {{ $product->id == 1 ? 'active' : ''}}">
                     <img
                       src="{{ Storage::url($product->image)}}"
                       class="d-block w-100"
