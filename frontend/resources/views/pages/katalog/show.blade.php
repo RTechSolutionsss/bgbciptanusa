@@ -48,7 +48,7 @@
                                         <td>{{ $product->price ?? "" }}</td>
                                         <td>{{ $product->description ?? ""}}</td>
                                         <td class="d-inline-flex justify-content-center">
-                                            <a title="Edit" class="mx-1 w-50 open_model" id="edit-customer" data-toggle="modal" data-id="{{ $product->id }}">
+                                            <a href="{{ route('product.edit', $product->id)}}" >
                                                 <img class="img-responsive" src="{{ url('/img/edit2.png')}}" >
                                             </a>
                                             <form method="POST" action="{{ route('product.destroy', $product->id) }}">
@@ -81,34 +81,6 @@
 @endsection
 
 @push('addon-script')
-
-<div class="modal fade" id="crud-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Katalog</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-        <form class="form-horizontal" action="{{ route('katalog.editing')}}">
-            @csrf
-            <input hidden name="id" id="katalog_id"> 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group error">
-                        <label for="inputName">Category</label>
-                        <input type="text" class="form-control has-error" id="category" name="category" placeholder="Category" value="">
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary" id="btn-save">Update</button>
-        </form>
-        </div>
-    </div>
-  </div>
-</div>
 
 <!-- Modal -->
 
@@ -156,17 +128,6 @@
     
     $(document).ready(function () {
         $('#crudTable').DataTable();
-
-        /* Edit customer */
-        $('body').on('click', '#edit-customer', function () {
-                var user_id = $(this).data('id');
-                $.get('katalog/'+user_id+'/edit', function (data) {
-                        $('#customerCrudModal').html("Edit customer");
-                        $('#crud-modal').modal('show');
-                        $('#katalog_id').val(data.id);
-                        $('#category').val(data.category);
-                    })
-            });
 
             $('.show_confirm').click(function(event) {
                 var form =  $(this).closest("form");

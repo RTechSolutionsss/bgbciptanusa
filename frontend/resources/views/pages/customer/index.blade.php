@@ -11,34 +11,95 @@
 
 @section('content')
     <div class="container mt-4">
-      @foreach($katalog as $category)
-        <h3 class="my-3">{{ $category->category }}</h3>
-        <section class="store-new-products">
-          <div class="container">
-            <div class="row">
-              @php
-                  $incrementProduct = 0
-              @endphp
-              @foreach($category->product as $product)
-                <div
-                  class="col-6 col-md-6 col-lg-3 shadow"
-                  data-aos="fade-up"
-                  data-aos-delay="{{ $incrementProduct += 100}}"
+      <section class="store-carousel">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div
+                id="storeCarousel"
+                class="carousel slide"
+                data-ride="carousel"
+                data-aos="zoom-in-up"
+              >
+                <ol class="carousel-indicators">
+                  <li
+                    data-target="#storeCarousel"
+                    data-slide-to="0"
+                    class="active"
+                  ></li>
+                  <li data-target="#storeCarousel" data-slide-to="0"></li>
+                  <li data-target="#storeCarousel" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                  @php($no = 1)
+                  @foreach($katalog as $category)
+                  @php($product = collect($category->product)->first())
+                  @isset($product)
+                  <div class="carousel-item {{ $product->id == 1 ? 'active' : ''}}">
+                    <img
+                      src="{{ Storage::url($product->image)}}"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  @endisset
+                  @endforeach
+                </div>
+                <a
+                  class="carousel-control-prev"
+                  href="#storeCarousel"
+                  role="button"
+                  data-slide="prev"
                 >
-                  <a href="{{ route('customer.edit', $product->id )}}" class="component-products d-block">
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a
+                  class="carousel-control-next"
+                  href="#storeCarousel"
+                  role="button"
+                  data-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+        <section class="store-new-products mt-4">
+          <div class="container">
+            <h2>Kategory</h2>
+            <div class="row">
+              @php($incrementproduct = 0)
+              @foreach($catalog as $category)
+              @php($product = collect($category->product)->first())
+                <div
+                  class="col-6 col-md-6 col-lg-4 shadow mt-2"
+                  data-aos="fade-up"
+                  data-aos-delay="{{ $incrementproduct += 100}}"
+                >
+                  <a href="{{ route('customer.edit', $category->id )}}" class="component-products d-block">
                     <div class="products-thumbnail pt-2">
                       <div
                         class="products-image"
                         style="background-image: url('{{ Storage::url($product->image)}}')"
                       ></div>
                     </div>
-                    <div class="products-text">{{ $product->name_product ?? "Rumah 1" }}</div>
+                    <div class="products-text">{{ $category->category ?? "Rumah 1" }}</div>
                   </a>
-                </div> 
-              @endforeach
+                </div>
+              
+            @endforeach
           </div>
         </section>
-      @endforeach
     </div>
 @endsection
 

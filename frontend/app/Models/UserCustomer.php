@@ -13,7 +13,7 @@ class UserCustomer extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-         'user_id','category_id','age','job','source_information','status','status_changed_at','address','city','no_ktp','tgl_lahir'
+         'user_id','category_id','age','job','source_information','status','status_changed_at','address','city','no_ktp','tgl_lahir','notes','product_id'
     ];
 
     /**

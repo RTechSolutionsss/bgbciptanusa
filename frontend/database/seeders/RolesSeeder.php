@@ -30,10 +30,22 @@ class RolesSeeder extends Seeder
         // ]);
 
         \App\Models\User::create([
-            'name' => 'nanda',
-            'email' => 'nanda.berliana@citanusa.com',
-            'password' => Hash::make('123123123'),
+            'name' => 'admin',
+            'email' => 'admin@citanusa.com',
+            'password' => Hash::make('0987654321'),
             'role_id' => '1'
+        ]);
+        \App\Models\User::create([
+            'name' => 'admincare',
+            'email' => 'admincare@citanusa.com',
+            'password' => Hash::make('1234567890'),
+            'role_id' => '1'
+        ]);
+        \App\Models\User::create([
+            'name' => 'adminmarkom',
+            'email' => 'adminmarkom@citanusa.com',
+            'password' => Hash::make('1qaz2wsx#EDC'),
+            'role_id' => '4'
         ]);
     }
 }

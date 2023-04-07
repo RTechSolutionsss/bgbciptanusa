@@ -44,9 +44,9 @@
               data-toggle="dropdown"
             >
               <img
-                src="/images/user_pc.png"
+                src="{{ url('img/logo.png')}}"
                 alt=""
-                class="rounded-circle mr-2 profile-picture w-75"
+                class="rounded-circle mr-2 profile-picture w-100"
               />
               <a href="{{ route('profile.edit', Auth::id())}}">
                 <p class="mt-4" style="font-size: 14px">
