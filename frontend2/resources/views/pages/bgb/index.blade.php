@@ -72,7 +72,7 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" required>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
