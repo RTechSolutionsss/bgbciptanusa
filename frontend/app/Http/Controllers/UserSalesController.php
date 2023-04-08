@@ -100,6 +100,7 @@ class UserSalesController extends Controller
         $base_url =  $_ENV['APP_URL'];
         $user = User::with('usersales')->findOrFail($id);
         $link =  route('customer.show', Crypt::encrypt($user->usersales->link));
-        return Redirect::to('https://wa.me/+62'.$user->phone.'?text=Selamat%20Bergabung%20dalam%20Program%20BGB%A0Citanusa%20Group!%20%20%20%20%20Berikut%20link%20akun%20anda:'. $link .'%20%20%20%20%20%20%20ID:%20%20:'. $user->email .'%20%20%20%20%20password%20:%20'. $user->first_password . '%20%20%20%20%20%20%20%20%20Happy%20Selling!%20url=%20'. $base_url);
+        $url = route('login');
+        return Redirect::to('https://wa.me/+62'.$user->phone.'?text=Selamat%20Bergabung%20dalam%20Program%20BGB%A0Citanusa%20Group!%20%20%20%20%20Berikut%20link%20akun%20anda:'. $link .'%20%20%20%20%20%20%20ID:%20%20:'. $user->email .'%20%20%20%20%20password%20:%20'. $user->first_password . '%20%20%20%20%20%20%20%20%20Happy%20Selling!%20url=%20'. $url);
     }
 }
