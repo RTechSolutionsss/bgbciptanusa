@@ -30,7 +30,7 @@
                                     </ul>
                                 </div>
                                 @endif
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                <table class="table table-hover nowrap scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -46,6 +46,7 @@
                                             <th>Birth Date</th>
                                             <th>Notes</th>
                                             <th>Category</th>
+                                            <th>Create Date</th>
                                             @if(in_array(Auth::user()->role_id , [1,2]))
                                             <th>Status</th>
                                             <th>Action</th>
@@ -75,6 +76,7 @@
                                                 <td>{{ $user->datacustomermarkom->tgl_lahir ?? " " }}</td>
                                                 <td>{{ $user->datacustomermarkom->notes ?? " " }}</td>
                                                 <td>{{ $katalog->category ?? " " }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($user->created_at)->format('Y m, d') ?? " " }}</td>
                                                 @if(in_array(Auth::user()->role_id , [1,2]))
                                                 <td>{{ $user->usersales->status ?? " "}}</td>
                                                 <td class="d-inline-flex justify-content-center">

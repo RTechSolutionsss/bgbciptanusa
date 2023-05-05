@@ -144,7 +144,7 @@
     <script src="{{url('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script type="text/javascript" src="{{url('js/datatables2.min.js')}}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url('js/jquerydatatables.min.js')}}"></script>
     <script>
       AOS.init();
     </script>
