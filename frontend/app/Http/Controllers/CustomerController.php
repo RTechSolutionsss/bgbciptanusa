@@ -25,7 +25,6 @@ class CustomerController extends Controller
     public function index()
     {
         $katalog = catalogs::with('product')->limit(3);
-        dd($katalog);
         $catalog = catalogs::with('product')->get();
         return view('pages.customer.index', compact('katalog'));
     }
@@ -84,7 +83,7 @@ class CustomerController extends Controller
             $decrypted = Crypt::decrypt($id);
         } catch (DecryptException $e) {
             $e->getMessage();
-            info("Error....!!");
+            return view('pages.dashboard');
         }
 
         $katalog = catalogs::with('product')->limit(3)->get();
