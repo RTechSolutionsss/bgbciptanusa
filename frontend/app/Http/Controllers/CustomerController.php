@@ -104,6 +104,7 @@ class CustomerController extends Controller
         $random = $randomStr;
         $email = 'dummy'.$random.'@gmail.com';
         $tracking = trackingUrlTasks::where('ip_address', $request->ip())->first('ip_address');
+        
         dd($decrypted);
         if($tracking == null)
         {
